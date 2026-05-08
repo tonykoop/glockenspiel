@@ -1,0 +1,233 @@
+{
+  "schema": "instrument-maker-v4.3-cnc-plan",
+  "generated_on": "2026-05-08",
+  "packet": "/mnt/c/Users/Tony/Documents/GitHub/glockenspiel",
+  "family": "free-free-bar-idiophone-metal",
+  "machine_note": "Maker Nexus / home shop CNC for walnut frame routing only. Bar work is bench-top: chop saw + drill press + bench file. Verify exact CNC machine, spindle, collet, bed size, and hold-down before CAM.",
+  "available_inputs": {
+    "design.md": true,
+    "family-spec.csv": true,
+    "bom.csv": true,
+    "cut-list.csv": true,
+    "sourcing.csv": true,
+    "drawing-brief.md": true,
+    "assembly-manual.md": true,
+    "validation.csv": true,
+    "drawings/GLK-C5-body.svg": true,
+    "drawings/GLK-A5-body.svg": true,
+    "drawings/GLK-C7-body.svg": true,
+    "drawings/family-overview.svg": true,
+    "drawings/frame-layout.svg": true,
+    "drawings/mounting-detail.svg": true,
+    "jig-decision.md": true
+  },
+  "assumptions": [
+    "This is a pre-CAM operation graph, not verified G-code.",
+    "The active build range is C5-C7 chromatic, 25 bars (with 10-bar pentatonic art-fair variant sharing stock).",
+    "Source dimensions come from family-spec.csv and glockenspiel-design-table.xlsx.",
+    "Bars are flat 6061-T6 aluminum stock (0.250 in × 1.000 in). NO arch undercut, NO resonator tubes (per design.md).",
+    "Walnut frame is the only true CNC operation. Bar work is bench-top.",
+    "Effective K constant is calibrated from C5/A5/C7 pilot measurements; workbook K = 204431 is a first-pass."
+  ],
+  "pilot_gate": {
+    "pilot_notes": ["C5", "A5", "C7"],
+    "release_criteria": [
+      "C5 cut-long Hz produces K_eff within 5% of workbook K, OR family-spec.csv updated with calibrated K.",
+      "A5 trims to within +/- 5 cents of 880 Hz; mounting does not damp below 1.5 s sustain.",
+      "C7 trim discipline lands within +/- 10 cents in 0.05 in length increments.",
+      "Mounting prototype rig (JD-060) confirms grommet durometer choice.",
+      "Frame layout template (JD-070) confirms ergonomic reach."
+    ]
+  },
+  "operations": [
+    {
+      "op_id": "OP-010",
+      "name": "Review design package and pilot gate",
+      "machine": "Bench",
+      "tool": "design.md, family-spec.csv, jig-decision.md, calipers, tuner",
+      "workholding": "Flat bench, drawing packet",
+      "datum": "Top face A, left end B, bar centerline C",
+      "inputs": ["design.md", "family-spec.csv", "drawings/family-overview.svg", "validation.csv"],
+      "outputs": ["pilot-build checklist"],
+      "checks": ["C5/A5/C7 pilot bars identified", "Actual metal stock verified", "Full-set cutting held until pilot data reviewed"],
+      "notes": "Do not cut full set until pilot bars validate K constant and trim discipline."
+    },
+    {
+      "op_id": "OP-100",
+      "name": "Receive and verify aluminum stock",
+      "machine": "Bench",
+      "tool": "Calipers, scratch awl, scale",
+      "workholding": "Flat bench",
+      "datum": "Stock edge",
+      "inputs": ["bom.csv", "sourcing.csv"],
+      "outputs": ["Verified aluminum bar stock"],
+      "checks": ["Thickness 0.250 +/- 0.005 in", "Width 1.000 +/- 0.010 in", "No deep scratches in playing area", "Mill lot recorded for K-calibration traceability"],
+      "notes": "Different mill lots can shift K by 5-10%; record lot ID in validation.csv."
+    },
+    {
+      "op_id": "OP-110",
+      "name": "Mark bar length and node positions",
+      "machine": "Bench",
+      "tool": "Stop-block sled, square, fine marker, centerline gauge",
+      "workholding": "Sled per JD-020",
+      "datum": "Left end B, centerline C",
+      "inputs": ["family-spec.csv", "drawings/GLK-*-body.svg"],
+      "outputs": ["Marked blanks ready for cutting"],
+      "checks": ["Length within +/- 0.020 in of (predicted_length_in + 0.25)", "node_1 and node_2 within +/- 0.020 in"],
+      "notes": "Cut-long discipline: every bar marked at predicted length plus 0.25 in trim allowance."
+    },
+    {
+      "op_id": "OP-120",
+      "name": "Cut bars to length",
+      "machine": "Chop saw or band saw",
+      "tool": "80T or 100T non-ferrous carbide blade",
+      "workholding": "Stop block, hold-down clamp",
+      "datum": "Left end B against fence",
+      "inputs": ["family-spec.csv", "cut-list.csv"],
+      "outputs": ["Cut-long bar blanks"],
+      "checks": ["Cut squareness <= 0.5 deg", "Both ends deburred", "Bar labeled with member_id and target Hz"],
+      "notes": "Deburr immediately after cutting; aluminum burrs are easy to miss and cause node-hole tear-out."
+    },
+    {
+      "op_id": "OP-130",
+      "name": "Drill node holes",
+      "machine": "Drill press",
+      "tool": "3/16 in HSS or carbide bit, hardwood backer, depth stop",
+      "workholding": "V-block jig (JD-040) clamped to drill-press table",
+      "datum": "Left end B against jig fence, centerline C",
+      "inputs": ["family-spec.csv", "drawings/GLK-*-body.svg"],
+      "outputs": ["Bars with two clean node holes"],
+      "checks": ["Hole dia 0.1875 +/- 0.005 in", "Perpendicular within 1 deg", "No edge tear-out", "Both faces deburred"],
+      "notes": "Peck-drill, lubricate with cutting fluid, inspect each hole before moving to next bar."
+    },
+    {
+      "op_id": "OP-140",
+      "name": "Strike-test on foam supports (flat_bar)",
+      "machine": "Bench",
+      "tool": "Foam blocks at node positions, chromatic tuner, microphone",
+      "workholding": "Foam node-support cradle (JD-050)",
+      "datum": "Acoustic node datum",
+      "inputs": ["validation.csv", "family-spec.csv"],
+      "outputs": ["Measured Hz, sustain, timbre per pilot bar"],
+      "checks": ["K_eff = f * L^2 / t computed for each pilot", "Sustain to first 6 dB drop logged"],
+      "notes": "Pilot only (C5/A5/C7) before drilling node holes is unnecessary because length isn't yet trimmed; this row records the post-drill flat-bar measurement."
+    },
+    {
+      "op_id": "OP-150",
+      "name": "Trim to pitch (post_trim)",
+      "machine": "Bench / belt sander or fine file",
+      "tool": "Belt sander or bench file, calipers, tuner",
+      "workholding": "Hand-held; both ends accessible",
+      "datum": "Acoustic-tuning datum",
+      "inputs": ["validation.csv"],
+      "outputs": ["Bars trimmed to within +/- 10 cents (pilots), +/- 5 cents (production)"],
+      "checks": ["Material removed symmetrically from both ends", "Cents error logged", "Length recorded"],
+      "notes": "Sneak up slowly. Raising pitch is hard to reverse."
+    },
+    {
+      "op_id": "OP-200",
+      "name": "Walnut frame: receive and inspect",
+      "machine": "Bench",
+      "tool": "Calipers, square, moisture meter (optional)",
+      "workholding": "Flat bench",
+      "datum": "Board edge",
+      "inputs": ["bom.csv", "sourcing.csv"],
+      "outputs": ["Verified walnut stock"],
+      "checks": ["Thickness 0.75 in (or planed to it)", "Straight grain in finished area", "No checks through rail run"],
+      "notes": "Hard maple or cherry acceptable substitutes; frame wood does not affect bar tuning."
+    },
+    {
+      "op_id": "OP-210",
+      "name": "Walnut frame: CNC fixture and datum verification",
+      "machine": "CNC router",
+      "tool": "Spoilboard surfacing bit, edge finder/probe, clamps/tape",
+      "workholding": "Replaceable spoilboard, datum fence, optional vacuum",
+      "datum": "Machine X0 at left rail end, Y0 at rail centerline, Z0 top face",
+      "inputs": ["cnc/setup-sheet.md", "drawings/frame-layout.svg"],
+      "outputs": ["Verified fixture", "air-cut report"],
+      "checks": ["Spoilboard surfaced", "Clamps clear toolpath", "Air-cut passes"],
+      "notes": "Run before walnut is loaded."
+    },
+    {
+      "op_id": "OP-220",
+      "name": "Walnut frame: rough rail profile and grommet pockets",
+      "machine": "CNC router",
+      "tool": "1/4 in downcut spiral; 1/8 in upcut for pocket details",
+      "workholding": "Spoilboard tape/clamps",
+      "datum": "Top face, left end, centerline",
+      "inputs": ["family-spec.csv", "cad/design-table-inputs.csv", "drawings/frame-layout.svg"],
+      "outputs": ["Profiled walnut rails with grommet pockets"],
+      "checks": ["Pocket dia and depth match design", "Rail length 33.25 in (chromatic) or 14.50 in (pentatonic)", "Bar-to-bar spacing 1.25 in"],
+      "notes": "Front rail (15 naturals or 7 pentatonic naturals) and back rail (10 sharps or 3 pentatonic sharps) cut separately."
+    },
+    {
+      "op_id": "OP-230",
+      "name": "Walnut frame: optional inlay engraving",
+      "machine": "CNC router or laser",
+      "tool": "1/8 in V-bit (60 deg) for V-carve, OR diode laser for surface engraving",
+      "workholding": "Same fixture as OP-220",
+      "datum": "Same as OP-220",
+      "inputs": ["drawing-brief.md"],
+      "outputs": ["Decorated rails (optional)"],
+      "checks": ["Engraving depth consistent", "No splintering"],
+      "notes": "Per workbook row 115: Broinwood-style inlay or laser-engraved logo on rail sides. Skip for pilot build."
+    },
+    {
+      "op_id": "OP-240",
+      "name": "Walnut frame: drill stainless rod through-holes and fastener holes",
+      "machine": "CNC router or drill press",
+      "tool": "1/8 in (rod hole), pilot bits for fastener holes",
+      "workholding": "End-cap fixture or rail end fixture",
+      "datum": "Rail end face, rail centerline",
+      "inputs": ["drawings/mounting-detail.svg", "cad/sw-global-variables.csv"],
+      "outputs": ["Through-drilled rails and end caps"],
+      "checks": ["Rod hole dia 0.140 +/- 0.005 in", "Fastener holes match selected hardware", "End-cap holes align with rail holes"],
+      "notes": "Run a slip-fit test with the actual stainless rod before assembly."
+    },
+    {
+      "op_id": "OP-300",
+      "name": "Mounting prototype rig (durometer pilot)",
+      "machine": "Bench",
+      "tool": "Three short walnut blocks with grommet pockets, three durometer grommets, paracord, 1/8 in stainless rod",
+      "workholding": "Bench-top assembly",
+      "datum": "Block centerline",
+      "inputs": ["bom.csv", "drawings/mounting-detail.svg"],
+      "outputs": ["Sustain and pitch-shift data per durometer"],
+      "checks": ["Sustain >= 75% of flat-bar sustain", "Pitch shift <= 5 cents", "No buzz at three dynamics"],
+      "notes": "Pilot Shore 30A, 50A, 70A on C5/A5/C7 bars before standardizing on walnut frame."
+    },
+    {
+      "op_id": "OP-400",
+      "name": "Frame assembly and bar mounting",
+      "machine": "Bench",
+      "tool": "Drivers, awl, scissors (paracord), tuner",
+      "workholding": "Frame on workbench",
+      "datum": "Frame centerline, end-cap reference",
+      "inputs": ["assembly-manual.md", "drawings/frame-layout.svg", "drawings/mounting-detail.svg"],
+      "outputs": ["Assembled glockenspiel"],
+      "checks": ["All bars seated", "Cord captures every bar at both nodes", "No metal-on-metal contact", "Stainless rod clears bars"],
+      "notes": "Use removable fasteners until tuning and buzz checks are done."
+    },
+    {
+      "op_id": "OP-500",
+      "name": "Final validation and release",
+      "machine": "Bench",
+      "tool": "Chromatic tuner, microphone, calipers, mallets (hard rubber + brass), camera",
+      "workholding": "Assembled instrument on stable stand",
+      "datum": "Same support and strike datum used for every note",
+      "inputs": ["validation.csv", "photo-shotlist.md"],
+      "outputs": ["Updated validation.csv", "process photos"],
+      "checks": ["Every framed bar within +/- 5 cents at soft dynamic", "No persistent buzz at any dynamic", "Sustain consistent across row to within 30%"],
+      "notes": "Do not declare the build complete until measured data closes the loop."
+    }
+  ],
+  "release_checks": [
+    "Every operation has a datum and workholding method.",
+    "Every tool has a real machine available or an escalation note.",
+    "All tuning-critical features include trim allowance.",
+    "C5/A5/C7 pilot data is reviewed before cutting all 25 bars.",
+    "Grommet durometer is selected from pilot data, not assumed.",
+    "validation.csv receives measured data after the first prototype.",
+    "K_eff is updated in family-spec.csv if it differs from workbook K by more than 5%."
+  ]
+}

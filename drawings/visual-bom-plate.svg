@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" font-family="Helvetica, Arial, sans-serif">
+<rect x="0" y="0" width="800" height="600" fill="white" stroke="black" stroke-width="1"/>
+<text x="64" y="36" font-size="14" font-weight="bold">Glockenspiel — Visual BOM Plate</text>
+<text x="64" y="54" font-size="11" fill="#444">25-bar chromatic C5-C7 + 10-bar pentatonic art-fair variant. 6061-T6 aluminum. Walnut frame.</text>
+
+<!-- Bar set rectangle -->
+<rect x="60" y="80" width="320" height="180" fill="#fafafa" stroke="black"/>
+<text x="70" y="100" font-size="11" font-weight="bold">1. Bar Set</text>
+<rect x="70" y="110" width="120" height="14" fill="#e8e8e8" stroke="black"/>
+<rect x="70" y="130" width="100" height="14" fill="#e8e8e8" stroke="black"/>
+<rect x="70" y="150" width="80" height="14" fill="#e8e8e8" stroke="black"/>
+<rect x="70" y="170" width="60" height="14" fill="#e8e8e8" stroke="black"/>
+<text x="200" y="122" font-size="9" fill="#444">25 bars chromatic (C5-C7)</text>
+<text x="200" y="142" font-size="9" fill="#444">+10 bars pentatonic (alt scale)</text>
+<text x="200" y="162" font-size="9" fill="#444">6061-T6 Aluminum, 1/4"×1" flat bar</text>
+<text x="200" y="182" font-size="9" fill="#444">→ family-spec.csv for dimensions</text>
+<text x="70" y="220" font-size="10" fill="#444">Alt metals: Brass C260, Steel 1018, 304 SS, Phosphor Bronze</text>
+<text x="70" y="236" font-size="10" fill="#444">(regenerate family-spec.csv with new K)</text>
+
+<!-- Frame -->
+<rect x="400" y="80" width="340" height="180" fill="#fafafa" stroke="black"/>
+<text x="410" y="100" font-size="11" font-weight="bold">2. Frame (Walnut)</text>
+<rect x="410" y="115" width="320" height="14" fill="#5c3517"/>
+<rect x="410" y="135" width="320" height="14" fill="#5c3517"/>
+<text x="410" y="170" font-size="9" fill="#444">Front rail (naturals row)</text>
+<text x="410" y="186" font-size="9" fill="#444">Back rail (sharps/flats, raised 0.5")</text>
+<text x="410" y="202" font-size="9" fill="#444">2× end caps · 2× cross members (optional)</text>
+<text x="410" y="218" font-size="9" fill="#444">Hard maple or cherry acceptable</text>
+
+<!-- Hardware -->
+<rect x="60" y="280" width="340" height="180" fill="#fafafa" stroke="black"/>
+<text x="70" y="300" font-size="11" font-weight="bold">3. Mounting Hardware</text>
+<line x1="80" y1="320" x2="180" y2="320" stroke="#a0522d" stroke-width="3"/>
+<text x="200" y="324" font-size="9" fill="#444">550 paracord, ~12 ft</text>
+<circle cx="100" cy="345" r="6" fill="#444"/>
+<circle cx="120" cy="345" r="6" fill="#444"/>
+<circle cx="140" cy="345" r="6" fill="#444"/>
+<text x="200" y="349" font-size="9" fill="#444">Rubber grommets (Shore 30A/50A/70A)</text>
+<line x1="80" y1="370" x2="200" y2="370" stroke="#bbb" stroke-width="3"/>
+<text x="220" y="374" font-size="9" fill="#444">1/8" stainless rod, 2×</text>
+<rect x="80" y="385" width="20" height="20" fill="#222"/>
+<rect x="105" y="385" width="20" height="20" fill="#222"/>
+<rect x="130" y="385" width="20" height="20" fill="#222"/>
+<rect x="155" y="385" width="20" height="20" fill="#222"/>
+<text x="200" y="400" font-size="9" fill="#444">Self-adhesive rubber feet (4)</text>
+<text x="70" y="430" font-size="9" fill="#444">Frame fastener kit (screws, inserts, washers)</text>
+
+<!-- Mallets -->
+<rect x="420" y="280" width="320" height="180" fill="#fafafa" stroke="black"/>
+<text x="430" y="300" font-size="11" font-weight="bold">4. Mallets (≥2 pairs)</text>
+<circle cx="450" cy="325" r="8" fill="#666"/>
+<line x1="458" y1="325" x2="510" y2="325" stroke="#a0522d" stroke-width="2"/>
+<text x="525" y="329" font-size="9" fill="#444">Hard rubber (default)</text>
+<circle cx="450" cy="350" r="8" fill="#bb9844"/>
+<line x1="458" y1="350" x2="510" y2="350" stroke="#a0522d" stroke-width="2"/>
+<text x="525" y="354" font-size="9" fill="#444">Brass (orchestral upgrade)</text>
+<circle cx="450" cy="375" r="8" fill="#fff" stroke="#666"/>
+<line x1="458" y1="375" x2="510" y2="375" stroke="#a0522d" stroke-width="2"/>
+<text x="525" y="379" font-size="9" fill="#444">Lexan / Delrin (alternate)</text>
+<text x="430" y="420" font-size="9" fill="#444">Mallet head dia ~0.75-1.0", handle 8-10"</text>
+
+<!-- Tooling + Measurement -->
+<rect x="60" y="480" width="680" height="100" fill="#fafafa" stroke="black"/>
+<text x="70" y="500" font-size="11" font-weight="bold">5. Tooling & Measurement</text>
+<text x="70" y="520" font-size="9" fill="#444">CNC: 1/4" downcut, 1/8" upcut, optional 1/8" V-bit (frame routing)</text>
+<text x="70" y="538" font-size="9" fill="#444">Bar: 3/16" HSS/carbide drill bit, 80T/100T non-ferrous chop-saw blade</text>
+<text x="70" y="556" font-size="9" fill="#444">Measurement: chromatic tuner (≥2 kHz, e.g. Peterson StroboClip HD), mic, calipers, foam supports</text>
+<text x="400" y="520" font-size="9" fill="#444">→ bom.csv items 16-25</text>
+<text x="400" y="538" font-size="9" fill="#444">→ sourcing.csv for current quotes</text>
+<text x="400" y="556" font-size="9" fill="#444">→ validation.csv for K-calibration workflow</text>
+</svg>

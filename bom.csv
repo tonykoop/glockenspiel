@@ -1,0 +1,26 @@
+item,subassembly,part_name,qty,unit,material_or_spec,make_buy,status,estimated_cost,notes
+1,Bar set,C5-C7 chromatic tuned bars,25,ea,6061-T6 Aluminum 0.25 x 1.00 in flat bar,make,workbook-derived,$25-40,Individual dimensions in family-spec.csv. Cut long by 0.25 in and trim to pitch.
+2,Bar set (alt),Pentatonic art-fair tuned bars,10,ea,6061-T6 Aluminum 0.25 x 1.00 in flat bar,make,workbook-derived,included,Same stock as chromatic. C major pentatonic block in family-spec.csv.
+3,Bar material (alt),Brass C260 0.25 x 1.00 flat bar,as needed,ft,Brass C260 K=145325,buy,alternate,$$$,Premium tone variant. Regenerate family-spec.csv with K=145325 if used.
+4,Bar material (alt),Steel 1018 0.25 x 1.00 flat bar,as needed,ft,Steel 1018 K=204267,buy,alternate,$,K nearly identical to aluminum but heavier and brighter; same predicted lengths.
+5,Bar material (alt),304 Stainless flat bar,as needed,ft,304 SS K=198770,buy,alternate,$$,Outdoor / weather-resistant variant.
+6,Bar material (alt),Phosphor Bronze flat bar,as needed,ft,Phosphor Bronze K=142593,buy,alternate,$$$$,Best sustain; highest cost.
+7,Frame,Black Walnut frame stock,~6,bf,3/4 in thick clear straight-grain walnut,make,workbook-derived,$30-60,CNC-routed front + back rails plus end caps. Hard maple acceptable substitute.
+8,Frame,Frame fastener kit,1,set,"Wood screws, threaded inserts, washers",buy,TBD,$5-10,Prefer removable fasteners for tuning access.
+9,Hardware,550 Paracord (mounting cord),~12,ft,Low-stretch braided nylon cord 4 mm,buy,TBD,$5-10,Sized to pass through 3/16 in node holes without buzz.
+10,Hardware,Rubber grommets,~50,ea,3/16 in ID rubber grommets in two-three durometer candidates,buy,TBD,$5-15,Pilot Shore 30A / 50A / 70A on C5/A5/C7 before standardizing.
+11,Hardware,Stainless steel support rod,2,ea,1/8 in 304 stainless steel rod cut to frame length,buy,TBD,$5-10,Front and back row backup restraints; not load-bearing.
+12,Hardware,Self-adhesive rubber feet,4,ea,1/2 in rubber feet,buy,TBD,$3-5,Prevent frame sliding on table.
+13,Mallets,Hard rubber mallets,1,pair,Hard rubber head 1 in dia / 8-10 in handle,buy,TBD,$10-20,Default striker; balanced bright/warm tone.
+14,Mallets,Brass mallets,1,pair,Brass head 0.75 in dia / 8-10 in handle,buy,TBD,$15-25,Bright orchestral attack; ship as upgrade option.
+15,Mallets (alt),Lexan / Delrin mallets,1,pair,Lexan or Delrin head,buy,TBD,$15-20,Less metallic than brass; alternative for solo work.
+16,CNC tooling,1/4 in downcut spiral router bit,1,ea,Hardwood-capable carbide downcut,buy,TBD,$15-25,Walnut frame profile and grommet pockets.
+17,CNC tooling,1/8 in upcut spiral router bit,1,ea,Hardwood-capable carbide upcut,buy,TBD,$15-25,Small reliefs and inlay grooves.
+18,CNC tooling,1/8 in V-bit (60 deg),1,ea,V-carving bit for inlay/engraving,buy,TBD,$15-25,Optional: Broinwood-style frame inlay.
+19,Bar tooling,3/16 in HSS or carbide drill bit,1,ea,Brad-point or jobber-length bit,buy,TBD,$5-10,Node-hole drilling.
+20,Bar tooling,Non-ferrous carbide chop-saw blade,1,ea,80T or 100T carbide blade for aluminum,buy,TBD,$30-60,Cut bars to length without burr-up.
+21,Finish,Tung oil or shellac for frame,1,can,Frame finish only; bars left raw or clear-coated separately,buy,TBD,$10-20,Avoid heavy finishes that load the playing surface.
+22,Finish,Optional clear coat for bars,1,can,Thin spray lacquer if desired,buy,TBD,$5-15,Test pitch shift on offcut before committing.
+23,Measurement,Chromatic tuner / strobe,1,ea,Peterson StroboClip HD or app capable of 2 kHz+,buy/owned,TBD,$30-100,Must reliably read C7 = 2093 Hz.
+24,Measurement,Microphone for sustain logging,1,ea,Dynamic or condenser mic; phone app acceptable for first build,buy/owned,TBD,$0-100,Capture sustain to first 6 dB drop.
+25,Measurement,Calipers + scale + strike support foam,1,set,"Digital calipers, kitchen scale, foam blocks",buy/owned,TBD,$0-30,For K_eff calibration and node-support strike tests.

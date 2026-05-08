@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480" font-family="Helvetica, Arial, sans-serif">
+<rect x="0" y="0" width="800" height="480" fill="white" stroke="black" stroke-width="1"/>
+<text x="64" y="36" font-size="14" font-weight="bold">Glockenspiel — Frame Layout (top-down, piano-keyboard)</text>
+<text x="64" y="54" font-size="11" fill="#444">25 chromatic bars C5-C7. Naturals (front row, low) and sharps/flats (back row, raised 0.5" via spacer rail).</text>
+<text x="64" y="70" font-size="11" fill="#444">Frame outer envelope: ~33.25" wide (length) × ~12" deep (longest bar 9.88" + 1" margin per end).</text>
+
+<!-- Outer frame envelope -->
+<rect x="60" y="100" width="700" height="240" fill="#fafafa" stroke="black" stroke-width="1.5"/>
+<text x="60" y="92" font-size="9" fill="#666">walnut frame envelope</text>
+
+<!-- Front row (naturals) - 15 bars: C5 D5 E5 F5 G5 A5 B5 C6 D6 E6 F6 G6 A6 B6 C7 -->
+<text x="60" y="200" font-size="10" fill="#444">naturals (front)</text>
+<g font-size="9" text-anchor="middle">
+<rect x="80" y="210" width="32" height="100" fill="#fcd5b5" stroke="black"/><text x="96" y="265">C5</text>
+<rect x="120" y="210" width="32" height="98" fill="#fcd5b5" stroke="black"/><text x="136" y="265">D5</text>
+<rect x="160" y="210" width="32" height="96" fill="#fcd5b5" stroke="black"/><text x="176" y="265">E5</text>
+<rect x="200" y="210" width="32" height="94" fill="#fcd5b5" stroke="black"/><text x="216" y="265">F5</text>
+<rect x="240" y="210" width="32" height="92" fill="#fcd5b5" stroke="black"/><text x="256" y="265">G5</text>
+<rect x="280" y="210" width="32" height="90" fill="#fcd5b5" stroke="black"/><text x="296" y="265">A5</text>
+<rect x="320" y="210" width="32" height="88" fill="#fcd5b5" stroke="black"/><text x="336" y="265">B5</text>
+<rect x="360" y="210" width="32" height="86" fill="#fcd5b5" stroke="black"/><text x="376" y="265">C6</text>
+<rect x="400" y="210" width="32" height="84" fill="#fcd5b5" stroke="black"/><text x="416" y="265">D6</text>
+<rect x="440" y="210" width="32" height="82" fill="#fcd5b5" stroke="black"/><text x="456" y="265">E6</text>
+<rect x="480" y="210" width="32" height="80" fill="#fcd5b5" stroke="black"/><text x="496" y="265">F6</text>
+<rect x="520" y="210" width="32" height="78" fill="#fcd5b5" stroke="black"/><text x="536" y="265">G6</text>
+<rect x="560" y="210" width="32" height="76" fill="#fcd5b5" stroke="black"/><text x="576" y="265">A6</text>
+<rect x="600" y="210" width="32" height="74" fill="#fcd5b5" stroke="black"/><text x="616" y="265">B6</text>
+<rect x="640" y="210" width="32" height="72" fill="#fcd5b5" stroke="black"/><text x="656" y="265">C7</text>
+</g>
+
+<!-- Back row (sharps/flats) - 10 bars, raised: C#5 D#5 F#5 G#5 A#5 C#6 D#6 F#6 G#6 A#6 -->
+<text x="60" y="135" font-size="10" fill="#444">sharps/flats (back, raised 0.5")</text>
+<g font-size="9" text-anchor="middle">
+<rect x="100" y="140" width="32" height="50" fill="#cccccc" stroke="black"/><text x="116" y="170">C#5</text>
+<rect x="140" y="140" width="32" height="49" fill="#cccccc" stroke="black"/><text x="156" y="170">D#5</text>
+<rect x="220" y="140" width="32" height="47" fill="#cccccc" stroke="black"/><text x="236" y="170">F#5</text>
+<rect x="260" y="140" width="32" height="46" fill="#cccccc" stroke="black"/><text x="276" y="170">G#5</text>
+<rect x="300" y="140" width="32" height="45" fill="#cccccc" stroke="black"/><text x="316" y="170">A#5</text>
+<rect x="380" y="140" width="32" height="43" fill="#cccccc" stroke="black"/><text x="396" y="170">C#6</text>
+<rect x="420" y="140" width="32" height="42" fill="#cccccc" stroke="black"/><text x="436" y="170">D#6</text>
+<rect x="500" y="140" width="32" height="40" fill="#cccccc" stroke="black"/><text x="516" y="170">F#6</text>
+<rect x="540" y="140" width="32" height="39" fill="#cccccc" stroke="black"/><text x="556" y="170">G#6</text>
+<rect x="580" y="140" width="32" height="38" fill="#cccccc" stroke="black"/><text x="596" y="170">A#6</text>
+</g>
+
+<!-- Frame length dimension -->
+<line x1="60" y1="370" x2="760" y2="370" stroke="black" stroke-width="1"/>
+<line x1="60" y1="350" x2="60" y2="366" stroke="black" stroke-width="1"/>
+<line x1="760" y1="350" x2="760" y2="366" stroke="black" stroke-width="1"/>
+<text x="410" y="364" font-size="11" text-anchor="middle">frame length 33.25" (chromatic) / 14.50" (pentatonic)</text>
+
+<!-- Notes -->
+<text x="64" y="400" font-size="10" fill="#444">• Bar spacing ≈ 1.25" center-to-center (1" bar + 0.25" gap).</text>
+<text x="64" y="416" font-size="10" fill="#444">• Sharps/flats row sits ~0.5" higher than naturals via spacer rail under back row.</text>
+<text x="64" y="432" font-size="10" fill="#444">• 1/8" stainless rod runs full length under each row as backup restraint.</text>
+<text x="64" y="448" font-size="10" fill="#444">• Player position is on the front-row side; longest bar (C5) at left end.</text>
+
+<!-- Title block -->
+<rect x="556" y="380" width="220" height="80" fill="white" stroke="black" stroke-width="1"/>
+<text x="566" y="400" font-size="10" font-weight="bold">Frame Layout</text>
+<text x="566" y="418" font-size="9" fill="#444">Glockenspiel C5-C7 chromatic</text>
+<text x="566" y="434" font-size="9" fill="#444">walnut frame, naturals + sharps</text>
+<text x="566" y="450" font-size="9" fill="#444">v4.3 · 2026-05-08 · sheet 1/1</text>
+</svg>

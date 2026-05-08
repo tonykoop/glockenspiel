@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700" width="800" height="700" font-family="Helvetica, Arial, sans-serif">
+<rect x="0" y="0" width="800" height="700" fill="white" stroke="black" stroke-width="1"/>
+<text x="64" y="40" font-size="14" font-weight="bold">Glockenspiel — Family Overview (C5–C7 chromatic, 25 bars)</text>
+<text x="64" y="58" font-size="11" fill="#444">6061-T6 Aluminum, t = 0.250", w = 1.000". L = sqrt(K·t/f), K = 204431.</text>
+<rect x="64" y="90" width="480.0" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="100" font-size="9" text-anchor="end">C5</text>
+<text x="549.0" y="100" font-size="9" fill="#444">523.3 Hz · L = 9.883"</text>
+<rect x="64" y="111" width="466.3" height="13" fill="#cccccc" stroke="black" stroke-width="0.7"/>
+<text x="58" y="121" font-size="9" text-anchor="end">C#5</text>
+<text x="535.3" y="121" font-size="9" fill="#444">554.4 Hz · L = 9.602"</text>
+<rect x="64" y="132" width="453.1" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="142" font-size="9" text-anchor="end">D5</text>
+<text x="522.1" y="142" font-size="9" fill="#444">587.3 Hz · L = 9.328"</text>
+<rect x="64" y="153" width="440.2" height="13" fill="#cccccc" stroke="black" stroke-width="0.7"/>
+<text x="58" y="163" font-size="9" text-anchor="end">D#5</text>
+<text x="509.2" y="163" font-size="9" fill="#444">622.3 Hz · L = 9.063"</text>
+<rect x="64" y="174" width="427.6" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="184" font-size="9" text-anchor="end">E5</text>
+<text x="496.6" y="184" font-size="9" fill="#444">659.3 Hz · L = 8.805"</text>
+<rect x="64" y="195" width="415.5" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="205" font-size="9" text-anchor="end">F5</text>
+<text x="484.5" y="205" font-size="9" fill="#444">698.5 Hz · L = 8.554"</text>
+<rect x="64" y="216" width="403.6" height="13" fill="#cccccc" stroke="black" stroke-width="0.7"/>
+<text x="58" y="226" font-size="9" text-anchor="end">F#5</text>
+<text x="472.6" y="226" font-size="9" fill="#444">740.0 Hz · L = 8.311"</text>
+<rect x="64" y="237" width="392.1" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="247" font-size="9" text-anchor="end">G5</text>
+<text x="461.1" y="247" font-size="9" fill="#444">784.0 Hz · L = 8.074"</text>
+<rect x="64" y="258" width="381.0" height="13" fill="#cccccc" stroke="black" stroke-width="0.7"/>
+<text x="58" y="268" font-size="9" text-anchor="end">G#5</text>
+<text x="450.0" y="268" font-size="9" fill="#444">830.6 Hz · L = 7.844"</text>
+<rect x="64" y="279" width="370.1" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="289" font-size="9" text-anchor="end">A5</text>
+<text x="439.1" y="289" font-size="9" fill="#444">880.0 Hz · L = 7.621"</text>
+<rect x="64" y="300" width="359.6" height="13" fill="#cccccc" stroke="black" stroke-width="0.7"/>
+<text x="58" y="310" font-size="9" text-anchor="end">A#5</text>
+<text x="428.6" y="310" font-size="9" fill="#444">932.3 Hz · L = 7.404"</text>
+<rect x="64" y="321" width="349.4" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="331" font-size="9" text-anchor="end">B5</text>
+<text x="418.4" y="331" font-size="9" fill="#444">987.8 Hz · L = 7.193"</text>
+<rect x="64" y="342" width="339.4" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="352" font-size="9" text-anchor="end">C6</text>
+<text x="408.4" y="352" font-size="9" fill="#444">1046.5 Hz · L = 6.988"</text>
+<rect x="64" y="363" width="329.7" height="13" fill="#cccccc" stroke="black" stroke-width="0.7"/>
+<text x="58" y="373" font-size="9" text-anchor="end">C#6</text>
+<text x="398.7" y="373" font-size="9" fill="#444">1108.7 Hz · L = 6.789"</text>
+<rect x="64" y="384" width="320.4" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="394" font-size="9" text-anchor="end">D6</text>
+<text x="389.4" y="394" font-size="9" fill="#444">1174.7 Hz · L = 6.596"</text>
+<rect x="64" y="405" width="311.2" height="13" fill="#cccccc" stroke="black" stroke-width="0.7"/>
+<text x="58" y="415" font-size="9" text-anchor="end">D#6</text>
+<text x="380.2" y="415" font-size="9" fill="#444">1244.5 Hz · L = 6.408"</text>
+<rect x="64" y="426" width="302.4" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="436" font-size="9" text-anchor="end">E6</text>
+<text x="371.4" y="436" font-size="9" fill="#444">1318.5 Hz · L = 6.226"</text>
+<rect x="64" y="447" width="293.8" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="457" font-size="9" text-anchor="end">F6</text>
+<text x="362.8" y="457" font-size="9" fill="#444">1396.9 Hz · L = 6.049"</text>
+<rect x="64" y="468" width="285.4" height="13" fill="#cccccc" stroke="black" stroke-width="0.7"/>
+<text x="58" y="478" font-size="9" text-anchor="end">F#6</text>
+<text x="354.4" y="478" font-size="9" fill="#444">1480.0 Hz · L = 5.876"</text>
+<rect x="64" y="489" width="277.3" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="499" font-size="9" text-anchor="end">G6</text>
+<text x="346.3" y="499" font-size="9" fill="#444">1568.0 Hz · L = 5.709"</text>
+<rect x="64" y="510" width="269.4" height="13" fill="#cccccc" stroke="black" stroke-width="0.7"/>
+<text x="58" y="520" font-size="9" text-anchor="end">G#6</text>
+<text x="338.4" y="520" font-size="9" fill="#444">1661.2 Hz · L = 5.547"</text>
+<rect x="64" y="531" width="261.7" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="541" font-size="9" text-anchor="end">A6</text>
+<text x="330.7" y="541" font-size="9" fill="#444">1760.0 Hz · L = 5.389"</text>
+<rect x="64" y="552" width="254.3" height="13" fill="#cccccc" stroke="black" stroke-width="0.7"/>
+<text x="58" y="562" font-size="9" text-anchor="end">A#6</text>
+<text x="323.3" y="562" font-size="9" fill="#444">1864.7 Hz · L = 5.235"</text>
+<rect x="64" y="573" width="247.0" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="583" font-size="9" text-anchor="end">B6</text>
+<text x="316.0" y="583" font-size="9" fill="#444">1975.5 Hz · L = 5.086"</text>
+<rect x="64" y="594" width="240.0" height="13" fill="#fcd5b5" stroke="black" stroke-width="0.7"/>
+<text x="58" y="604" font-size="9" text-anchor="end">C7</text>
+<text x="309.0" y="604" font-size="9" fill="#444">2093.0 Hz · L = 4.941"</text>
+<rect x="556" y="600" width="220" height="80" fill="white" stroke="black" stroke-width="1"/>
+<text x="566" y="620" font-size="10" font-weight="bold">Family Overview</text>
+<text x="566" y="638" font-size="9" fill="#444">Glockenspiel C5-C7 chromatic</text>
+<text x="566" y="654" font-size="9" fill="#444">25 bars · 6061-T6 Al · K=204431</text>
+<text x="566" y="670" font-size="9" fill="#444">v4.3 · 2026-05-08 · sheet 1/1</text>
+</svg>
