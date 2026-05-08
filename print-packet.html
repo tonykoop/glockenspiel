@@ -1,0 +1,3853 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Glockenspiel Print Packet</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="print-packet.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Glockenspiel Print Packet</h1>
+</header>
+<h1
+id="glockenspiel-tuned-metal-bar-idiophone-build-packet-print-packet">Glockenspiel
+— Tuned Metal-Bar Idiophone Build Packet Print Packet</h1>
+<p>Generated: 2026-05-08</p>
+<p>Packet folder:
+<code>/mnt/c/Users/Tony/Documents/GitHub/glockenspiel</code></p>
+<h2 id="file-map">File Map</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>design.md</code></td>
+<td>Project intent, governing model, material decision matrix, mounting
+strategy, validation plan.</td>
+</tr>
+<tr class="even">
+<td><code>bom.csv</code></td>
+<td>Bar set + frame + hardware + mallets + tooling + measurement
+gear.</td>
+</tr>
+<tr class="odd">
+<td><code>sourcing.csv</code></td>
+<td>Supplier candidates with all prices marked not verified.</td>
+</tr>
+<tr class="even">
+<td><code>cut-list.csv</code></td>
+<td>Bar stock, walnut frame stock, and jig material cuts.</td>
+</tr>
+<tr class="odd">
+<td><code>drawing-brief.md</code></td>
+<td>Drawing classes, tolerances, and source files.</td>
+</tr>
+<tr class="even">
+<td><code>assembly-manual.md</code></td>
+<td>Pilot-first build philosophy and full bench workflow.</td>
+</tr>
+<tr class="odd">
+<td><code>validation.csv</code></td>
+<td>Target/measured values per bar; pilot stages for C5/A5/C7.</td>
+</tr>
+<tr class="even">
+<td><code>supplier-rfq.md</code></td>
+<td>RFQ template covering aluminum + alternates + walnut +
+hardware.</td>
+</tr>
+<tr class="odd">
+<td><code>visual-bom-brief.md</code></td>
+<td>Image-forward visual BOM plate spec.</td>
+</tr>
+<tr class="even">
+<td><code>jig-decision.md</code></td>
+<td>Pilot fixture decisions and release gates.</td>
+</tr>
+<tr class="odd">
+<td><code>risks.md</code></td>
+<td>Acoustic / structural / ergonomic / supply / fit-finish risks.</td>
+</tr>
+<tr class="even">
+<td><code>photo-shotlist.md</code></td>
+<td>Build-log photo plan.</td>
+</tr>
+<tr class="odd">
+<td><code>resources.md</code></td>
+<td>Provenance, family context, public-safety inventory.</td>
+</tr>
+<tr class="even">
+<td><code>README.md</code></td>
+<td>Project artifact.</td>
+</tr>
+<tr class="odd">
+<td><code>family-spec.csv</code></td>
+<td>25 chromatic + 10 pentatonic bar dimensions.</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break">
+
+</div>
+<h2 id="design.md">design.md</h2>
+<p>Project intent, governing model, material decision matrix, mounting
+strategy, validation plan.</p>
+<h1 id="glockenspiel-design-packet">Glockenspiel Design Packet</h1>
+<h2 id="project-intent">Project Intent</h2>
+<p>Build a 25-bar chromatic C5-C7 glockenspiel from the existing
+workbook design table, with a parallel 10-bar C-major-pentatonic
+art-fair variant that shares the same aluminum stock, frame jig, and
+validation discipline. The first build target is a CNC-routed walnut
+frame carrying 6061-T6 aluminum bars, suspended at the free-free nodes
+by rubber-grommeted cord through drilled node holes, with stainless
+support pins and no resonators.</p>
+<p>The useful boundary for this packet is “build-ready documentation,
+not finished CAD or measured tuning data.” Native SolidWorks files do
+not exist yet; the <code>cad/</code> folder defines the global-variable
+and design-table contract Tony can use to build the real model. All
+published bar lengths are first-pass cut-long targets — actual K varies
+with heat-treat and stock lot, so every bar should be cut at predicted
+length plus 0.25 in trim allowance and tuned down to pitch.</p>
+<h2 id="design-intake">Design Intake</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Instrument</td>
+<td>Glockenspiel / Metallophone</td>
+</tr>
+<tr class="even">
+<td>Instrument family</td>
+<td>Free-free beam idiophone (metal), no arch, no resonator</td>
+</tr>
+<tr class="odd">
+<td>Active build range</td>
+<td>C5-C7 chromatic, 25 bars (primary); C-major pentatonic, 10 bars
+(art-fair variant)</td>
+</tr>
+<tr class="even">
+<td>Source workbook</td>
+<td><code>glockenspiel-design-table.xlsx</code>, sheet
+<code>Glockenspiel</code>, range <code>A1:L174</code></td>
+</tr>
+<tr class="odd">
+<td>Primary material</td>
+<td>6061-T6 Aluminum, workbook K constant <code>204431</code></td>
+</tr>
+<tr class="even">
+<td>Bar stock</td>
+<td><code>0.25 in</code> thick x <code>1.00 in</code> wide flat bar</td>
+</tr>
+<tr class="odd">
+<td>Frame</td>
+<td>CNC-routed Black Walnut, piano-keyboard layout (naturals front,
+sharps back)</td>
+</tr>
+<tr class="even">
+<td>Mounting</td>
+<td>Cord through node holes at 22.4% and 77.6% of bar length, rubber
+grommets, 1/8 in stainless support rod</td>
+</tr>
+<tr class="odd">
+<td>Done-bar reference</td>
+<td><code>tonykoop/marimba</code> for free-free node math and validation
+discipline; tongue-drum README for documentation shape</td>
+</tr>
+</tbody>
+</table>
+<h2 id="governing-model">Governing Model</h2>
+<h3 id="bar-pitch-free-free-beam-metal">Bar Pitch (Free-Free Beam,
+Metal)</h3>
+<p>Glockenspiel bars are treated as free-free beams in their first
+flexural mode:</p>
+<pre class="text"><code>lambda_1 = 4.730
+f_1 = (lambda_1^2 / (2*pi*L^2)) * sqrt(E*I/(rho*A))</code></pre>
+<p>The workbook uses the practical shop form:</p>
+<pre class="text"><code>f ~= K * t / L^2
+L ~= sqrt(K * t / f)</code></pre>
+<p>where:</p>
+<ul>
+<li><code>f</code> is target frequency in Hz.</li>
+<li><code>K</code> is the metal-specific free-free bar constant in
+imperial units.</li>
+<li><code>t</code> is bar thickness in inches.</li>
+<li><code>L</code> is bar length in inches.</li>
+</ul>
+<p>For the active packet:</p>
+<pre class="text"><code>material = 6061-T6 Aluminum
+K = 204431
+t = 0.250 in
+w = 1.000 in</code></pre>
+<p>The K formula derived from the lambda_1 = 4.730 mode shape is:</p>
+<pre class="text"><code>K_metal = (lambda_1^2 / (2 * pi)) * sqrt(E / (12 * rho)) / 0.0254</code></pre>
+<p>with <code>E</code> in Pa and <code>rho</code> in kg/m^3. This is the
+same formula family used by the marimba for wooden bars; only the
+material constants change.</p>
+<p>Width does NOT affect frequency for a free-free beam in this mode.
+Width controls volume, sustain envelope, stiffness distribution, and the
+visual dimension of the bar — not pitch. The workbook’s bar-width column
+is a sourcing convenience, not a tuning lever.</p>
+<h3 id="no-arch-no-resonator">No Arch, No Resonator</h3>
+<p>Per workbook row 140 and
+<code>references/acoustic-models.md</code>:</p>
+<ul>
+<li><strong>No arch undercut.</strong> Glockenspiel bars are short and
+high-pitched; the dry, bright tone is desired. Arching would lower
+fundamentals and add manufacturing complexity without improving the
+instrument’s musical role. Marimba/xylophone arch logic does not
+transfer.</li>
+<li><strong>No resonator tubes.</strong> Small bars produce an
+immediate, bell-like attack. Resonator coupling at C5-C7 frequencies
+would require very short tubes (a few inches at C5, less than 1.5 in at
+C7) that are mechanically awkward and acoustically marginal.</li>
+</ul>
+<h3 id="empirical-correction-discipline">Empirical-Correction
+Discipline</h3>
+<p>NAF K2 corrections, vessel-flute Helmholtz corrections, and
+cantilever wood K-constant tables do <strong>not</strong> apply to
+free-free metal beams. See the “Empirical-correction guard rules”
+section of <code>references/acoustic-models.md</code>. The only honest
+correction loop here is:</p>
+<ol type="1">
+<li>Cut each pilot bar (C5, A5, C7) cut-long by 0.25 in.</li>
+<li>Mount on soft node supports and measure flat-bar Hz.</li>
+<li>Compute effective K from <code>K_eff = f * L^2 / t</code>.</li>
+<li>If pilot K_eff differs from workbook K by more than 5%, update the K
+constant in <code>family-spec.csv</code> (and the workbook B21 cell)
+before cutting the remaining bars.</li>
+<li>Trim to pitch in 0.05 in increments.</li>
+</ol>
+<p>This is what makes the workflow honest: predicted lengths are the
+starting point, measured Hz is the ground truth, and each shop-purchased
+lot of aluminum re-calibrates K.</p>
+<h3 id="nodes-and-mounting">Nodes And Mounting</h3>
+<p>Free-free node positions are fixed by the mode shape:</p>
+<pre class="text"><code>node_1 = 0.2242 * L
+node_2 = 0.7758 * L</code></pre>
+<p>Mounting strategy:</p>
+<ul>
+<li>Drill 0.1875 in (3/16 in) holes through the bar at the node
+positions, perpendicular to the long face.</li>
+<li>Thread 550 paracord (or low-stretch nylon) through the four node
+holes (two per bar, one cord per row).</li>
+<li>Rest each bar on rubber grommets seated in the walnut frame; the
+cord captures the bar without compressing the grommets.</li>
+<li>1/8 in stainless steel rod runs the length of each row through the
+frame as a backup and travel restraint.</li>
+</ul>
+<p>Critical: the rubber grommet durometer dominates sustain. Soft
+(~Shore 30A) grommets give long sustain; hard (~Shore 70A) grommets damp
+quickly. Pilot the C5/A5/C7 bars on three durometers before
+standardizing.</p>
+<h2 id="material-decision-matrix">Material Decision Matrix</h2>
+<p>The workbook’s K library carries five candidate metals. Aluminum is
+the workbook default and packet primary. Surface the alternatives
+explicitly so the user can rerun the family-spec for any of them.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Material</th>
+<th style="text-align: right;">E (GPa)</th>
+<th style="text-align: right;">rho (kg/m^3)</th>
+<th style="text-align: right;">K</th>
+<th>Tone Character</th>
+<th>Cut Method</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6061-T6 Aluminum</td>
+<td style="text-align: right;">68.9</td>
+<td style="text-align: right;">2700</td>
+<td style="text-align: right;">204431</td>
+<td>Bright, bell-like, long sustain</td>
+<td>Band saw, chop saw</td>
+<td>Lightest, easiest to cut, lowest cost. Packet default.</td>
+</tr>
+<tr class="even">
+<td>Brass C260</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">8530</td>
+<td style="text-align: right;">145325</td>
+<td>Warm, mellow, classic glock tone</td>
+<td>Band saw, hacksaw</td>
+<td>Heavier, traditional orchestra-bell tone, higher material cost.</td>
+</tr>
+<tr class="odd">
+<td>Steel 1018</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">7850</td>
+<td style="text-align: right;">204267</td>
+<td>Harsh, metallic, very loud</td>
+<td>Chop saw, angle grinder</td>
+<td>Loud and bright; can be perceived as harsh. K is similar to aluminum
+because E/rho ratio is similar.</td>
+</tr>
+<tr class="even">
+<td>304 Stainless Steel</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: right;">8000</td>
+<td style="text-align: right;">198770</td>
+<td>Clean, modern, corrosion-resistant</td>
+<td>Chop saw, angle grinder</td>
+<td>Outdoor / weather-resistant variant.</td>
+</tr>
+<tr class="odd">
+<td>Phosphor Bronze</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">8860</td>
+<td style="text-align: right;">142593</td>
+<td>Rich, warm, excellent sustain</td>
+<td>Band saw</td>
+<td>Premium tone, highest material cost.</td>
+</tr>
+</tbody>
+</table>
+<p>To rebuild the family-spec for a different metal: replace the K
+column in <code>family-spec.csv</code> and recompute
+<code>predicted_length_in = sqrt(K * t / f)</code>. Width and node
+positions stay the same.</p>
+<h2 id="bar-schedule">Bar Schedule</h2>
+<p>The full 25-bar chromatic schedule is in
+<code>family-spec.csv</code>. Representative rows for 6061-T6 aluminum
+at t=0.250, w=1.000:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Note</th>
+<th style="text-align: right;">MIDI</th>
+<th style="text-align: right;">Target Hz</th>
+<th style="text-align: right;">Length in</th>
+<th style="text-align: right;">Node 1 in</th>
+<th style="text-align: right;">Node 2 in</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C5</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">523.251</td>
+<td style="text-align: right;">9.883</td>
+<td style="text-align: right;">2.216</td>
+<td style="text-align: right;">7.667</td>
+</tr>
+<tr class="even">
+<td>A5</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">880.000</td>
+<td style="text-align: right;">7.621</td>
+<td style="text-align: right;">1.709</td>
+<td style="text-align: right;">5.912</td>
+</tr>
+<tr class="odd">
+<td>C6</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">1046.502</td>
+<td style="text-align: right;">6.988</td>
+<td style="text-align: right;">1.567</td>
+<td style="text-align: right;">5.422</td>
+</tr>
+<tr class="even">
+<td>A6</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">1760.000</td>
+<td style="text-align: right;">5.389</td>
+<td style="text-align: right;">1.208</td>
+<td style="text-align: right;">4.181</td>
+</tr>
+<tr class="odd">
+<td>C7</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">2093.005</td>
+<td style="text-align: right;">4.941</td>
+<td style="text-align: right;">1.108</td>
+<td style="text-align: right;">3.834</td>
+</tr>
+</tbody>
+</table>
+<p>The 10-bar pentatonic art-fair variant (C5, D5, E5, G5, A5, C6, D6,
+E6, G6, A6) is also in <code>family-spec.csv</code> under
+<code>scale_label = C major pentatonic art-fair</code>. It shares the
+same K, t, w defaults and reuses the same frame jig with different drill
+positions.</p>
+<h2 id="frame-layout">Frame Layout</h2>
+<p>Piano-keyboard layout. Naturals (C, D, E, F, G, A, B) live in the
+front row; sharps/flats live in the back row, raised about 0.5 in. From
+the workbook (cells B107-B110):</p>
+<pre class="text"><code>total_bar_stock_chromatic = 191.02 in (~16 ft) for 25 bars cut long by 0.5 in each
+longest_bar = 9.883 in (C5)
+shortest_bar = 4.941 in (C7)
+chromatic_frame_length = 25 * (w + 0.25) + 2 = 33.25 in
+pentatonic_frame_length = 10 * (w + 0.25) + 2 = 14.50 in</code></pre>
+<p>Frame depth follows the longest bar plus 1 in margin on each end
+(about 12 in). Final frame ergonomics (height, mallet reach, accidental
+row offset, transport handles) are TBD until a full-size mock-up is
+taped on a bench.</p>
+<h2 id="striker-hardness">Striker Hardness</h2>
+<p>Striker hardness controls the timbre as much as the bar material
+does. Workbook row 145 lists three options:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Striker Head</th>
+<th>Tone</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Brass</td>
+<td>Sharpest attack, bright, percussive</td>
+<td>Orchestral / soloist; loud rooms</td>
+</tr>
+<tr class="even">
+<td>Hard rubber</td>
+<td>Balanced bright/warm</td>
+<td>Studio / classroom; default for art-fair pentatonic</td>
+</tr>
+<tr class="odd">
+<td>Lexan / Delrin</td>
+<td>Bright but less metallic than brass</td>
+<td>Solo work; chimes</td>
+</tr>
+</tbody>
+</table>
+<p>Include at least two pairs in the BOM; let the player choose by
+context.</p>
+<h2 id="hardware-alignment">Hardware Alignment</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Tool / Fixture</th>
+<th>Datum</th>
+<th>Release Check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bar receiving</td>
+<td>Calipers, scale, scratch awl</td>
+<td>Edge of stock</td>
+<td>Verify thickness 0.25 +/- 0.005 in, width 1.00 +/- 0.010 in, no
+surface damage</td>
+</tr>
+<tr class="even">
+<td>Mark length and nodes</td>
+<td>Stop-block sled, square, fine marker</td>
+<td>Left end B, centerline C</td>
+<td>Length within +/- 0.020 in of
+<code>predicted_length_in + 0.25</code> (cut long); nodes within +/-
+0.020 in</td>
+</tr>
+<tr class="odd">
+<td>Cut to length</td>
+<td>Band saw or chop saw with stop block</td>
+<td>Left end B</td>
+<td>Squareness within 0.5 deg; deburr both ends</td>
+</tr>
+<tr class="even">
+<td>Drill node holes</td>
+<td>Drill press with V-block fence and backer</td>
+<td>Centerline C, node line</td>
+<td>Hole diameter 0.1875 +/- 0.005 in; perpendicular within 1 deg; no
+edge tear-out</td>
+</tr>
+<tr class="odd">
+<td>Deburr / file</td>
+<td>Bench file, deburring tool, sandpaper</td>
+<td>Top face A</td>
+<td>Edges chamfered 0.005-0.010 in; node holes deburred</td>
+</tr>
+<tr class="even">
+<td>Strike test (flat)</td>
+<td>Soft foam supports at nodes, tuner, mic</td>
+<td>Acoustic node</td>
+<td>Record measured Hz, cents error, sustain s in
+<code>validation.csv</code></td>
+</tr>
+<tr class="odd">
+<td>Trim to pitch</td>
+<td>Belt sander or fine file at the ends</td>
+<td>Acoustic-tuning datum</td>
+<td>Remove material symmetrically from both ends; sneak up slowly
+(raising pitch is hard to reverse)</td>
+</tr>
+<tr class="even">
+<td>Mount</td>
+<td>Walnut frame jig, paracord, grommets, 1/8 in stainless rod</td>
+<td>Frame centerline</td>
+<td>All bars seated; cord captures every bar; no metal-on-metal
+contact</td>
+</tr>
+<tr class="odd">
+<td>Final tune (framed)</td>
+<td>Frame on bench, tuner, mallets</td>
+<td>Frame centerline</td>
+<td>Every bar within +/- 5 cents at soft/medium dynamics</td>
+</tr>
+</tbody>
+</table>
+<p><code>jig-decision.md</code> is the controlling fixture decision
+record. Pilot fixtures (cut sled, node-drill V-block jig, mounting test
+rig) are built only for C5/A5/C7 before the full 25-bar run.</p>
+<h2 id="open-assumptions">Open Assumptions</h2>
+<ul>
+<li>Active packet uses C5-C7 (workbook default). Lower-pitched
+bass-glock variants (C4-C6) are out of scope for this build.</li>
+<li>6061-T6 aluminum is the workbook-selected material. Actual stock lot
+K may differ by 5-10%. The validation pilot is the K-recalibration step,
+not a confirmation.</li>
+<li>Mounting cord material, grommet durometer, and stainless rod
+diameter are first-pass picks — pilot at three durometers before
+freezing.</li>
+<li>Walnut frame geometry, mallet selection, and accidental row offset
+are TBD until a full-size taped layout passes ergonomic review.</li>
+<li>Final finish on bars: leave raw or clear-coat. Clear coats add mass;
+expect a small flat-pitch shift (typically &lt;5 cents). Tune after
+finish if a finish is applied.</li>
+<li>No measured bar data exists yet, so all frequencies are target
+predictions.</li>
+</ul>
+<h2 id="validation-plan">Validation Plan</h2>
+<ol type="1">
+<li>Cut three pilot bars first: C5, A5, C7. Cut each to
+<code>predicted_length_in + 0.25</code>.</li>
+<li>Mass-and-strike test on foam supports before drilling node holes
+(<code>flat_bar</code> row in <code>validation.csv</code>). Compute
+K_eff = f * L^2 / t.</li>
+<li>If pilot K_eff differs from workbook K = 204431 by more than 5%,
+update the K column in <code>family-spec.csv</code> and the workbook B21
+cell before cutting the remaining bars.</li>
+<li>Drill node holes; mount on cord+grommet rig (<code>mounted</code>
+row). Record measured Hz, cents error, and sustain (time to first 6 dB
+drop after a moderate strike).</li>
+<li>Trim each pilot to within +/- 10 cents by removing material
+symmetrically from both ends. Cents error formula:</li>
+</ol>
+<pre class="text"><code>cents = 1200 * log2(measured_hz / target_hz)</code></pre>
+<ol start="6" type="1">
+<li>Mount in the walnut frame (<code>framed</code> row). Strike at soft,
+medium, and loud dynamics; check for buzz, rubber-on-stainless-rod
+rattle, and frame resonance.</li>
+<li>Cut the remaining 22 chromatic bars (and 7 additional pentatonic
+bars if building both) using the calibrated K and the pilot trim
+discipline.</li>
+<li>Final assembly check: every bar within +/- 5 cents at soft dynamics,
+no buzz, sustain consistent across the row to within 30%.</li>
+</ol>
+<h2 id="provenance">Provenance</h2>
+<ul>
+<li>Source workbook: <code>glockenspiel-design-table.xlsx</code>,
+generated before this v4.3 packet run. 94 formulas, 16 blue inputs,
+single sheet <code>Glockenspiel</code>.</li>
+<li>Skill workflow: <code>instrument-maker-v4</code> v4.3
+root-mode.</li>
+<li>Reference family: <code>cantilever-idiophone</code> /
+<code>free-free-bar-idiophone</code>. Done-bar sibling:
+<code>tonykoop/marimba</code>.</li>
+<li>Cultural context: glockenspiel is a modern Western orchestral
+idiophone (German “bells play”) derived from 18th-19th century
+military-band bell sets and Berlioz-era orchestral bells. No
+cultural-appropriation review required for the instrument category.</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="bom.csv">bom.csv</h2>
+<p>Bar set + frame + hardware + mallets + tooling + measurement
+gear.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>item</th>
+<th>subassembly</th>
+<th>part_name</th>
+<th>qty</th>
+<th>unit</th>
+<th>material_or_spec</th>
+<th>make_buy</th>
+<th>status</th>
+<th>estimated_cost</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Bar set</td>
+<td>C5-C7 chromatic tuned bars</td>
+<td>25</td>
+<td>ea</td>
+<td>6061-T6 Aluminum 0.25 x 1.00 in flat bar</td>
+<td>make</td>
+<td>workbook-derived</td>
+<td>$25-40</td>
+<td>Individual dimensions in family-spec.csv. Cut long by 0.25 in and
+trim to pitch.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Bar set (alt)</td>
+<td>Pentatonic art-fair tuned bars</td>
+<td>10</td>
+<td>ea</td>
+<td>6061-T6 Aluminum 0.25 x 1.00 in flat bar</td>
+<td>make</td>
+<td>workbook-derived</td>
+<td>included</td>
+<td>Same stock as chromatic. C major pentatonic block in
+family-spec.csv.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Bar material (alt)</td>
+<td>Brass C260 0.25 x 1.00 flat bar</td>
+<td>as needed</td>
+<td>ft</td>
+<td>Brass C260 K=145325</td>
+<td>buy</td>
+<td>alternate</td>
+<td><span class="math display">$$$ | Premium tone variant. Regenerate
+family-spec.csv with K=145325 if used. |
+| 4 | Bar material (alt) | Steel 1018 0.25 x 1.00 flat bar | as needed |
+ft | Steel 1018 K=204267 | buy | alternate | $ | K nearly identical to
+aluminum but heavier and brighter; same predicted lengths. |
+| 5 | Bar material (alt) | 304 Stainless flat bar | as needed | ft | 304
+SS K=198770 | buy | alternate | $$</span></td>
+<td>Outdoor / weather-resistant variant.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Bar material (alt)</td>
+<td>Phosphor Bronze flat bar</td>
+<td>as needed</td>
+<td>ft</td>
+<td>Phosphor Bronze K=142593</td>
+<td>buy</td>
+<td>alternate</td>
+<td>$$$$</td>
+<td>Best sustain; highest cost.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Frame</td>
+<td>Black Walnut frame stock</td>
+<td>~6</td>
+<td>bf</td>
+<td>3/4 in thick clear straight-grain walnut</td>
+<td>make</td>
+<td>workbook-derived</td>
+<td>$30-60</td>
+<td>CNC-routed front + back rails plus end caps. Hard maple acceptable
+substitute.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Frame</td>
+<td>Frame fastener kit</td>
+<td>1</td>
+<td>set</td>
+<td>Wood screws, threaded inserts, washers</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$5-10</td>
+<td>Prefer removable fasteners for tuning access.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Hardware</td>
+<td>550 Paracord (mounting cord)</td>
+<td>~12</td>
+<td>ft</td>
+<td>Low-stretch braided nylon cord 4 mm</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$5-10</td>
+<td>Sized to pass through 3/16 in node holes without buzz.</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Hardware</td>
+<td>Rubber grommets</td>
+<td>~50</td>
+<td>ea</td>
+<td>3/16 in ID rubber grommets in two-three durometer candidates</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$5-15</td>
+<td>Pilot Shore 30A / 50A / 70A on C5/A5/C7 before standardizing.</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>Hardware</td>
+<td>Stainless steel support rod</td>
+<td>2</td>
+<td>ea</td>
+<td>1/8 in 304 stainless steel rod cut to frame length</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$5-10</td>
+<td>Front and back row backup restraints; not load-bearing.</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>Hardware</td>
+<td>Self-adhesive rubber feet</td>
+<td>4</td>
+<td>ea</td>
+<td>1/2 in rubber feet</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$3-5</td>
+<td>Prevent frame sliding on table.</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>Mallets</td>
+<td>Hard rubber mallets</td>
+<td>1</td>
+<td>pair</td>
+<td>Hard rubber head 1 in dia / 8-10 in handle</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$10-20</td>
+<td>Default striker; balanced bright/warm tone.</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>Mallets</td>
+<td>Brass mallets</td>
+<td>1</td>
+<td>pair</td>
+<td>Brass head 0.75 in dia / 8-10 in handle</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$15-25</td>
+<td>Bright orchestral attack; ship as upgrade option.</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>Mallets (alt)</td>
+<td>Lexan / Delrin mallets</td>
+<td>1</td>
+<td>pair</td>
+<td>Lexan or Delrin head</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$15-20</td>
+<td>Less metallic than brass; alternative for solo work.</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>CNC tooling</td>
+<td>1/4 in downcut spiral router bit</td>
+<td>1</td>
+<td>ea</td>
+<td>Hardwood-capable carbide downcut</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$15-25</td>
+<td>Walnut frame profile and grommet pockets.</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>CNC tooling</td>
+<td>1/8 in upcut spiral router bit</td>
+<td>1</td>
+<td>ea</td>
+<td>Hardwood-capable carbide upcut</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$15-25</td>
+<td>Small reliefs and inlay grooves.</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td>CNC tooling</td>
+<td>1/8 in V-bit (60 deg)</td>
+<td>1</td>
+<td>ea</td>
+<td>V-carving bit for inlay/engraving</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$15-25</td>
+<td>Optional: Broinwood-style frame inlay.</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td>Bar tooling</td>
+<td>3/16 in HSS or carbide drill bit</td>
+<td>1</td>
+<td>ea</td>
+<td>Brad-point or jobber-length bit</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$5-10</td>
+<td>Node-hole drilling.</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>Bar tooling</td>
+<td>Non-ferrous carbide chop-saw blade</td>
+<td>1</td>
+<td>ea</td>
+<td>80T or 100T carbide blade for aluminum</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$30-60</td>
+<td>Cut bars to length without burr-up.</td>
+</tr>
+<tr class="odd">
+<td>21</td>
+<td>Finish</td>
+<td>Tung oil or shellac for frame</td>
+<td>1</td>
+<td>can</td>
+<td>Frame finish only; bars left raw or clear-coated separately</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$10-20</td>
+<td>Avoid heavy finishes that load the playing surface.</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td>Finish</td>
+<td>Optional clear coat for bars</td>
+<td>1</td>
+<td>can</td>
+<td>Thin spray lacquer if desired</td>
+<td>buy</td>
+<td>TBD</td>
+<td>$5-15</td>
+<td>Test pitch shift on offcut before committing.</td>
+</tr>
+<tr class="odd">
+<td>23</td>
+<td>Measurement</td>
+<td>Chromatic tuner / strobe</td>
+<td>1</td>
+<td>ea</td>
+<td>Peterson StroboClip HD or app capable of 2 kHz+</td>
+<td>buy/owned</td>
+<td>TBD</td>
+<td>$30-100</td>
+<td>Must reliably read C7 = 2093 Hz.</td>
+</tr>
+<tr class="even">
+<td>24</td>
+<td>Measurement</td>
+<td>Microphone for sustain logging</td>
+<td>1</td>
+<td>ea</td>
+<td>Dynamic or condenser mic; phone app acceptable for first build</td>
+<td>buy/owned</td>
+<td>TBD</td>
+<td>$0-100</td>
+<td>Capture sustain to first 6 dB drop.</td>
+</tr>
+<tr class="odd">
+<td>25</td>
+<td>Measurement</td>
+<td>Calipers + scale + strike support foam</td>
+<td>1</td>
+<td>set</td>
+<td>Digital calipers, kitchen scale, foam blocks</td>
+<td>buy/owned</td>
+<td>TBD</td>
+<td>$0-30</td>
+<td>For K_eff calibration and node-support strike tests.</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break">
+
+</div>
+<h2 id="sourcing.csv">sourcing.csv</h2>
+<p>Supplier candidates with all prices marked not verified.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>item</th>
+<th>stable_spec</th>
+<th>supplier_candidates</th>
+<th>current_price_status</th>
+<th>lead_time_status</th>
+<th>verification_needed</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6061-T6 Aluminum flat bar</td>
+<td>0.25 x 1.00 in flat bar; T6 temper preferred for consistent K;
+minimum 18 ft per build with pilot scrap</td>
+<td>Online Metals; McMaster-Carr; Metal Supermarkets; local metal
+supplier</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify temper and mill lot; request mill cert for K-calibration
+record</td>
+<td>Buy enough for 25 chromatic + 10 pentatonic + at least 3 pilot/scrap
+bars from one mill lot.</td>
+</tr>
+<tr class="even">
+<td>Brass C260 flat bar (alt)</td>
+<td>0.25 x 1.00 in C260 yellow brass flat bar</td>
+<td>Online Metals; McMaster-Carr; Metal Supermarkets</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify alloy and temper</td>
+<td>Premium tone alt; regenerate family-spec.csv with K=145325 before
+cutting.</td>
+</tr>
+<tr class="odd">
+<td>Steel 1018 flat bar (alt)</td>
+<td>0.25 x 1.00 in 1018 cold-rolled steel flat bar</td>
+<td>Online Metals; McMaster-Carr; local metal supplier</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify cold-rolled vs hot-rolled</td>
+<td>Loud and bright; same family-spec lengths as aluminum (K nearly
+identical).</td>
+</tr>
+<tr class="even">
+<td>304 Stainless flat bar (alt)</td>
+<td>0.25 x 1.00 in 304 SS flat bar</td>
+<td>Online Metals; McMaster-Carr</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify finish (#4 vs polished)</td>
+<td>Outdoor variant; regenerate family-spec.csv with K=198770.</td>
+</tr>
+<tr class="odd">
+<td>Phosphor Bronze flat bar (alt)</td>
+<td>0.25 x 1.00 in phosphor bronze flat bar</td>
+<td>Online Metals; specialty metal supplier</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify alloy (510 vs 544)</td>
+<td>Premium tone; highest cost; regenerate family-spec.csv with
+K=142593.</td>
+</tr>
+<tr class="even">
+<td>Walnut frame lumber</td>
+<td>Clear straight-grain Black Walnut 4/4 dressed to 3/4 in thick;
+sufficient for two rails (~36 in long) plus end caps and accidental
+row</td>
+<td>Local hardwood dealer; Woodcraft; Rockler</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify board flatness and absence of checks</td>
+<td>Hard maple or cherry acceptable substitutes; frame wood does not
+affect bar tuning.</td>
+</tr>
+<tr class="odd">
+<td>Paracord (mounting)</td>
+<td>550 paracord or low-stretch braided nylon cord; 4 mm diameter to fit
+through 3/16 in node holes</td>
+<td>Outdoor / climbing supplier; Amazon; local hardware</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify diameter and stretch under tension</td>
+<td>Must not buzz against bar holes.</td>
+</tr>
+<tr class="even">
+<td>Rubber grommets</td>
+<td>3/16 in ID rubber grommets in Shore 30A / 50A / 70A durometers</td>
+<td>McMaster-Carr; marimba parts supplier; Amazon</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify durometer accuracy and sample three options</td>
+<td>Two grommets per bar minimum; durometer is the dominant sustain
+control.</td>
+</tr>
+<tr class="odd">
+<td>Stainless steel support rod</td>
+<td>1/8 in 304 stainless steel rod in 36 in lengths</td>
+<td>McMaster-Carr; OnlineMetals; local hardware</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify diameter +/- 0.005 in</td>
+<td>Two rods per instrument (front + back row).</td>
+</tr>
+<tr class="even">
+<td>Self-adhesive rubber feet</td>
+<td>1/2 in rubber feet with 3M adhesive backing</td>
+<td>McMaster-Carr; hardware store</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify adhesion strength</td>
+<td>Four per frame.</td>
+</tr>
+<tr class="odd">
+<td>Hard rubber mallets</td>
+<td>Pair of hard-rubber-headed mallets with 8-10 in wood handles</td>
+<td>Music supplier; Amazon; Steve Weiss Music</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify head durometer</td>
+<td>Default striker for the assembled instrument.</td>
+</tr>
+<tr class="even">
+<td>Brass mallets</td>
+<td>Pair of brass-headed mallets with 8-10 in wood handles</td>
+<td>Music supplier; Steve Weiss Music</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify head finish (polished vs natural)</td>
+<td>Optional bright-attack upgrade.</td>
+</tr>
+<tr class="odd">
+<td>Lexan / Delrin mallets</td>
+<td>Pair of synthetic-headed mallets</td>
+<td>Music supplier; specialty supplier</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify head material</td>
+<td>Optional alternative striker; less metallic than brass.</td>
+</tr>
+<tr class="even">
+<td>CNC router bits</td>
+<td>1/4 in downcut + 1/8 in upcut + 1/8 in V-bit (carbide)</td>
+<td>Amana; Whiteside; Onsrud; local CNC supplier</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify shank diameter for collet</td>
+<td>Walnut frame profile and inlay.</td>
+</tr>
+<tr class="odd">
+<td>Aluminum drill bit</td>
+<td>3/16 in HSS or carbide bit; brad-point or jobber-length</td>
+<td>McMaster-Carr; local hardware</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify bit type</td>
+<td>Node-hole drilling.</td>
+</tr>
+<tr class="even">
+<td>Non-ferrous saw blade</td>
+<td>80T or 100T carbide blade for aluminum chop saw</td>
+<td>Local tooling supplier; Amazon</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify arbor size</td>
+<td>Avoid burr-up on bar ends.</td>
+</tr>
+<tr class="odd">
+<td>Frame finish</td>
+<td>Tung oil or shellac for walnut frame</td>
+<td>Wood finishing supplier; hardware store</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify finish compatibility with walnut</td>
+<td>Avoid heavy lacquer on the playing surface.</td>
+</tr>
+<tr class="even">
+<td>Chromatic tuner</td>
+<td>Strobe or chromatic tuner with 2 kHz+ range; Peterson StroboClip HD
+recommended</td>
+<td>Music store; Sweetwater; Amazon</td>
+<td>not verified</td>
+<td>not verified</td>
+<td>Verify upper frequency range</td>
+<td>Must read C7 = 2093 Hz reliably.</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break">
+
+</div>
+<h2 id="cut-list.csv">cut-list.csv</h2>
+<p>Bar stock, walnut frame stock, and jig material cuts.</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>cut_id</th>
+<th>subassembly</th>
+<th>qty</th>
+<th>material</th>
+<th>rough_dimension_in</th>
+<th>finished_dimension_or_reference</th>
+<th>operation</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CUT-BAR-CHROM-LOW</td>
+<td>Chromatic bars C5-G5</td>
+<td>8</td>
+<td>6061-T6 Aluminum 0.25 x 1.00</td>
+<td>Cut 0.25 in oversize from family-spec.csv lengths</td>
+<td>See GLK-C5 through GLK-G5 in family-spec.csv</td>
+<td>Mark/cut/drill/deburr/trim</td>
+<td>Longest bars are the stock-yield driver; cut long and trim to
+pitch.</td>
+</tr>
+<tr class="even">
+<td>CUT-BAR-CHROM-MID</td>
+<td>Chromatic bars Gsharp5-G6</td>
+<td>12</td>
+<td>6061-T6 Aluminum 0.25 x 1.00</td>
+<td>Cut 0.25 in oversize from family-spec.csv lengths</td>
+<td>See GLK-Gsharp5 through GLK-G6 in family-spec.csv</td>
+<td>Mark/cut/drill/deburr/trim</td>
+<td>Mid-range bars; standard trim discipline.</td>
+</tr>
+<tr class="odd">
+<td>CUT-BAR-CHROM-HIGH</td>
+<td>Chromatic bars Gsharp6-C7</td>
+<td>5</td>
+<td>6061-T6 Aluminum 0.25 x 1.00</td>
+<td>Cut 0.25 in oversize from family-spec.csv lengths</td>
+<td>See GLK-Gsharp6 through GLK-C7 in family-spec.csv</td>
+<td>Mark/cut/drill/deburr/trim</td>
+<td>Short bars are pitch-sensitive; trim in 0.05 in increments.</td>
+</tr>
+<tr class="even">
+<td>CUT-BAR-PENT</td>
+<td>Pentatonic art-fair bars (10)</td>
+<td>10</td>
+<td>6061-T6 Aluminum 0.25 x 1.00</td>
+<td>Cut 0.25 in oversize from family-spec.csv lengths</td>
+<td>See GLK-PENT-* in family-spec.csv</td>
+<td>Mark/cut/drill/deburr/trim</td>
+<td>Optional second instrument; same stock as chromatic.</td>
+</tr>
+<tr class="odd">
+<td>CUT-FRAME-FRONT</td>
+<td>Walnut front rail (naturals row)</td>
+<td>1</td>
+<td>Black Walnut 3/4 in thick</td>
+<td>~34 in x ~3 in x 3/4 in rough blank</td>
+<td>33.25 in finished length per design.md</td>
+<td>CNC profile/pocket/drill</td>
+<td>Holds 15 natural bars (chromatic) or 7 naturals (pentatonic).</td>
+</tr>
+<tr class="even">
+<td>CUT-FRAME-BACK</td>
+<td>Walnut back rail (sharps/flats row)</td>
+<td>1</td>
+<td>Black Walnut 3/4 in thick</td>
+<td>~34 in x ~3 in x 3/4 in rough blank</td>
+<td>33.25 in finished length per design.md (raised 0.5 in)</td>
+<td>CNC profile/pocket/drill</td>
+<td>Holds 10 sharps/flats (chromatic) or 3 (pentatonic).</td>
+</tr>
+<tr class="odd">
+<td>CUT-FRAME-ENDS</td>
+<td>Walnut end caps</td>
+<td>2</td>
+<td>Black Walnut 3/4 in thick</td>
+<td>~5 in x ~3 in x 3/4 in rough blank</td>
+<td>Width set by frame depth (~4 in) plus 1 in margin</td>
+<td>Cut/drill/joint</td>
+<td>End caps tie front and back rails; carry stainless rod holes.</td>
+</tr>
+<tr class="even">
+<td>CUT-FRAME-CROSS</td>
+<td>Walnut cross members (optional)</td>
+<td>2</td>
+<td>Black Walnut 3/4 in thick or hardwood plywood</td>
+<td>~14 in x ~2 in x 3/4 in rough blank</td>
+<td>Width set by frame ergonomics</td>
+<td>Cut/drill</td>
+<td>Optional cross members for stiffness; not required for first
+build.</td>
+</tr>
+<tr class="odd">
+<td>CUT-JIG-MARK</td>
+<td>Marking sled (jig)</td>
+<td>1</td>
+<td>MDF or scrap hardwood</td>
+<td>Sized to longest bar plus 6 in</td>
+<td>Per JD-020 in jig-decision.md</td>
+<td>Cut/clamp/scribe</td>
+<td>Stop-block sled for length and node marking.</td>
+</tr>
+<tr class="even">
+<td>CUT-JIG-DRILL</td>
+<td>Node-hole V-block jig (jig)</td>
+<td>1</td>
+<td>MDF or hardwood</td>
+<td>~12 in x 4 in x 1.5 in</td>
+<td>Per JD-040 in jig-decision.md</td>
+<td>Cut/route/V-groove/drill</td>
+<td>V-block fence with hardwood backer for drill press.</td>
+</tr>
+<tr class="odd">
+<td>CUT-JIG-MOUNT</td>
+<td>Mounting prototype rig (jig)</td>
+<td>1</td>
+<td>Walnut offcut or scrap hardwood</td>
+<td>Three short blocks ~3 in x 1 in x 0.75 in</td>
+<td>Per JD-060 in jig-decision.md</td>
+<td>Cut/drill/grommet test</td>
+<td>Three-block rig for grommet durometer pilot.</td>
+</tr>
+<tr class="even">
+<td>CUT-JIG-FRAME</td>
+<td>Full-size paper or MDF frame template</td>
+<td>1</td>
+<td>Paper or thin MDF</td>
+<td>Sized to chromatic frame footprint (~34 in x ~12 in)</td>
+<td>Per JD-070 in jig-decision.md</td>
+<td>Print or scribe</td>
+<td>Validate ergonomics before cutting walnut.</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break">
+
+</div>
+<h2 id="drawing-brief.md">drawing-brief.md</h2>
+<p>Drawing classes, tolerances, and source files.</p>
+<h1 id="drawing-brief">Drawing Brief</h1>
+<h2 id="drawing-set">Drawing Set</h2>
+<p>The current packet requires five build-critical drawing classes:</p>
+<ol type="1">
+<li><strong>Per-bar dimensioned SVGs</strong> for the three pilot bars
+(<code>drawings/GLK-C5-body.svg</code>,
+<code>drawings/GLK-A5-body.svg</code>,
+<code>drawings/GLK-C7-body.svg</code>). These show the long flat bar,
+node-hole positions, length dimension, thickness, and a title block.
+Additional per-bar SVGs can be generated from
+<code>family-spec.csv</code> if the full chromatic set is required.</li>
+<li><strong>Family overview</strong>
+(<code>drawings/family-overview.svg</code>) — scaled side-by-side
+outline of all 25 chromatic bars from C5 (longest) to C7 (shortest),
+labeled with note + Hz + length, to show the visual tuning
+gradient.</li>
+<li><strong>Frame layout</strong>
+(<code>drawings/frame-layout.svg</code>) — top-down piano-keyboard
+layout with naturals in the front row, sharps/flats in the back row
+raised 0.5 in. Shows bar spacing, accidental row offset, frame envelope,
+and player-side datum.</li>
+<li><strong>Mounting detail</strong>
+(<code>drawings/mounting-detail.svg</code>) — section view through one
+bar at a node showing: bar profile, 3/16 in node hole, paracord, rubber
+grommet, walnut frame pocket, and 1/8 in stainless support rod position.
+Critical for explaining why the bar is acoustically isolated from the
+frame.</li>
+<li><strong>Visual BOM plate</strong>
+(<code>drawings/visual-bom-plate.svg</code>) — exploded callout of bar
+set, frame rails, hardware, and tooling with numbered references to
+<code>bom.csv</code>.</li>
+</ol>
+<h2 id="drawing-standards">Drawing Standards</h2>
+<ul>
+<li>Units: inches.</li>
+<li>Primary datum for each bar: left end (B) and centerline (C). Top
+face (A) is implicit.</li>
+<li>Node holes shown at <code>0.2242 * L</code> and
+<code>0.7758 * L</code> from the left end.</li>
+<li>Bar dimensions to call out: length, width, thickness, node
+positions, hole diameter (3/16 in).</li>
+<li>Frame dimensions: rail length, rail thickness, accidental row
+offset, grommet pocket diameter and depth, support rod hole
+diameter.</li>
+<li>Tolerances:
+<ul>
+<li>Bar length cut: <code>+0.250 in / -0.000 in</code> before tuning
+(cut long).</li>
+<li>Final length: tune-to-pitch, not dimension-only.</li>
+<li>Thickness: <code>+/- 0.005 in</code> (verified at receiving).</li>
+<li>Node hole placement: <code>+/- 0.020 in</code>.</li>
+<li>Frame pocket: <code>+/- 0.010 in</code>.</li>
+</ul></li>
+<li>CNC notes: bit diameter, stepover, Z-zero surface, tabs,
+workholding, and release checks per
+<code>cnc/setup-sheet.md</code>.</li>
+<li>Jig notes: which fixture carries datum A/B/C and which validation
+row releases the operation.</li>
+</ul>
+<h2 id="open-drawing-questions">Open Drawing Questions</h2>
+<ul>
+<li>Whether to generate per-bar SVGs for all 25 chromatic notes or only
+the three pilots.</li>
+<li>Final accidental row offset (currently 0.5 in raised; ergonomic test
+may reduce).</li>
+<li>Final grommet pocket depth (depends on selected grommet
+supplier).</li>
+<li>Whether the optional Broinwood-style inlay on rail sides gets a
+dedicated detail drawing.</li>
+<li>Whether to draw the brass/steel/stainless/phosphor-bronze
+alternate-metal variants.</li>
+</ul>
+<h2 id="source-files">Source Files</h2>
+<ul>
+<li><code>family-spec.csv</code> (canonical bar dimensions)</li>
+<li><code>design.md</code> (governing model, mounting strategy)</li>
+<li><code>glockenspiel-design-table.xlsx</code> (parametric
+workbook)</li>
+<li><code>cad/glockenspiel-master.scad</code> (3D starter)</li>
+<li><code>cad/SolidWorks-MasterLayout-Plan.md</code> (SolidWorks
+contract)</li>
+<li><code>cnc/setup-sheet.md</code> (operation order, datums)</li>
+<li><code>jig-decision.md</code> (fixture release gates)</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="assembly-manual.md">assembly-manual.md</h2>
+<p>Pilot-first build philosophy and full bench workflow.</p>
+<h1 id="glockenspiel-assembly-manual">Glockenspiel Assembly Manual</h1>
+<h2 id="build-philosophy">Build Philosophy</h2>
+<p>Cut three pilot bars before committing the whole set: C5, A5, and C7.
+They bound the longest/lowest bar, the mid-scale 880 Hz reference, and
+the shortest/highest bar. Use their measured pitch and mounting response
+to decide whether the workbook K constant, selected aluminum stock, and
+node-hole geometry are ready for the full 25-bar run.</p>
+<h2 id="preflight">Preflight</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" />Confirm active range: chromatic
+C5-C7 (25 bars) and / or pentatonic C-major art-fair variant (10
+bars).</label></li>
+<li><label><input type="checkbox" />Confirm selected metal (default
+6061-T6 Aluminum, K=204431) and verify stock thickness (0.250 in) and
+width (1.000 in) with calipers.</label></li>
+<li><label><input type="checkbox" />Confirm grommet durometer candidates
+(suggested: Shore 30A, 50A, 70A).</label></li>
+<li><label><input type="checkbox" />Confirm 1/8 in stainless support rod
+is on hand and cut to frame length plus 0.5 in margin per
+end.</label></li>
+<li><label><input type="checkbox" />Review <code>jig-decision.md</code>
+and build only the pilot jigs (JD-010 to JD-050).</label></li>
+<li><label><input type="checkbox" />Print or open
+<code>drawings/GLK-C5-body.svg</code>, <code>GLK-A5-body.svg</code>,
+<code>GLK-C7-body.svg</code>, <code>mounting-detail.svg</code>, and
+<code>cnc/setup-sheet.md</code>.</label></li>
+</ul>
+<h2 id="jig-decision-gate">Jig Decision Gate</h2>
+<p>Use <code>jig-decision.md</code> as the shop stop/go sheet. Do not
+cut the full 25-bar set, drill the final walnut frame, or commit to a
+permanent grommet system until the pilot rows in
+<code>validation.csv</code> have measured values for
+<code>flat_bar</code>, <code>post_trim</code>, <code>mounted</code>, and
+<code>framed</code> for C5, A5, and C7.</p>
+<h2 id="bar-workflow">Bar Workflow</h2>
+<ol type="1">
+<li>Receive aluminum flat bar. Verify thickness 0.250 +/- 0.005 in and
+width 1.000 +/- 0.010 in. Reject stock with deep scratches in the
+playing area or evident bow.</li>
+<li>Mark each bar with member_id, target note, target Hz, and top face
+per <code>family-spec.csv</code>.</li>
+<li>Mark each bar at length = <code>predicted_length_in + 0.25</code>
+(cut long, trim to pitch).</li>
+<li>Mark node positions at <code>0.2242 * L</code> and
+<code>0.7758 * L</code> from the left end. Use a centerline gauge for
+the node-hole position across the bar width.</li>
+<li>Cut to marked length using the chop saw with non-ferrous carbide
+blade or band saw with miter gauge. Deburr both ends.</li>
+<li>Drill 0.1875 in (3/16 in) node holes through the bar at marked
+positions. Use a V-block fence on the drill press, hardwood backer,
+depth stop. Peck-drill, lubricate, deburr both faces.</li>
+<li>Light file/sand on bar edges and corners. Do not round the top face
+contact zone unnecessarily.</li>
+<li>Strike-test on foam supports placed at the node positions. Record
+measured Hz, sustain, timbre, tuner model, and shop temperature in
+<code>validation.csv</code> (<code>flat_bar</code> row).</li>
+</ol>
+<h2 id="tuning-direction">Tuning Direction</h2>
+<ul>
+<li>To lower pitch: remove material from the underside center of the bar
+(small file or sander). Do this only as a last resort; metal bars are
+usually tuned by trimming length.</li>
+<li>To raise pitch: shorten the bar by trimming both ends symmetrically.
+Sneak up in 0.05 in increments — raising pitch is hard to reverse.</li>
+<li>Symmetrical trimming preserves the node-position ratio. Asymmetric
+trimming shifts the node line and damps mounting.</li>
+<li>Tune flat bars before drilling node holes if the K_eff is off by
+more than 5%; the calibrated K updates the predicted lengths for all
+remaining bars.</li>
+</ul>
+<h2 id="mounting-workflow">Mounting Workflow</h2>
+<ol type="1">
+<li>Cut paracord (or low-stretch braided nylon) to frame length plus 12
+in margin.</li>
+<li>Thread paracord through the front-row node holes (one cord through
+<code>node_1</code> of every front-row bar, a second cord through
+<code>node_2</code>).</li>
+<li>Thread the back-row sharp/flat bars on a separate pair of
+cords.</li>
+<li>Seat each bar on rubber grommets in the frame. Grommets seat in
+pre-drilled frame pockets; cord captures the bar without compressing the
+grommets.</li>
+<li>Run the 1/8 in stainless support rod through the frame as a backup
+restraint (do not load-bearing the rod).</li>
+<li>Tension cords just enough to keep bars from sliding; cords should
+not damp the bar at the nodes.</li>
+<li>Strike-test each bar after mounting. Record <code>mounted</code> row
+in <code>validation.csv</code>.</li>
+</ol>
+<h2 id="frame-workflow">Frame Workflow</h2>
+<ol type="1">
+<li>Validate ergonomics first: tape a full-size bar layout on the bench
+(see <code>drawings/frame-layout.svg</code>). The intended player
+reaches every bar without shoulder strain.</li>
+<li>CNC-route the walnut frame: front rail (naturals), back rail
+(sharps/flats raised 0.5 in), end caps, grommet pockets, support rod
+holes, fastener holes.</li>
+<li>Optionally laser- or CNC-engrave a Broinwood-style decorative inlay
+on the rail sides (workbook row 115).</li>
+<li>Sand to 220 grit. Apply tung oil or shellac. Avoid heavy lacquer;
+not for tone reasons (the bars are isolated from the frame), but for
+finish-rub-off on the playing surface.</li>
+<li>Add four self-adhesive 1/2 in rubber feet to the frame
+underside.</li>
+<li>Mount all bars per the Mounting Workflow.</li>
+<li>Strike-test the assembled instrument at soft, medium, and loud
+dynamics. Listen for buzz, rattle, or rod-on-bar contact. Record
+<code>framed</code> row in <code>validation.csv</code>.</li>
+</ol>
+<h2 id="final-checks">Final Checks</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" />All bars are labeled and match
+<code>family-spec.csv</code>.</label></li>
+<li><label><input type="checkbox" />Cord captures every bar at both node
+holes; no cord rides between nodes.</label></li>
+<li><label><input type="checkbox" />No metal-on-metal contact
+(bar-to-rod, bar-to-frame fastener).</label></li>
+<li><label><input type="checkbox" />Every measured pitch has a
+<code>validation.csv</code> row, including pilot
+K-calibration.</label></li>
+<li><label><input type="checkbox" />Every framed bar within +/- 5 cents
+at soft dynamics.</label></li>
+<li><label><input type="checkbox" />No persistent buzz at any dynamic on
+any bar.</label></li>
+<li><label><input type="checkbox" />At least two striker pairs included
+(suggested: hard rubber and brass).</label></li>
+<li><label><input type="checkbox" />Sustain consistent across the row to
+within 30%.</label></li>
+</ul>
+<h2 id="maintenance">Maintenance</h2>
+<ul>
+<li>Wipe aluminum bars with a microfiber cloth to remove fingerprints.
+Avoid abrasive polish; it changes mass.</li>
+<li>Inspect cords annually for fraying; replace before they fail.</li>
+<li>Replace rubber grommets every 5-10 years or when sustain drops
+noticeably.</li>
+<li>Re-tune any bar that drifts more than 10 cents (rare for aluminum
+unless the bar was bent or damaged).</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="validation.csv">validation.csv</h2>
+<p>Target/measured values per bar; pilot stages for C5/A5/C7.</p>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>member_id</th>
+<th>target_note</th>
+<th>target_hz</th>
+<th>predicted_length_in</th>
+<th>stage</th>
+<th>measured_hz</th>
+<th>cents_error</th>
+<th>sustain_s</th>
+<th>timbre</th>
+<th>tuner</th>
+<th>environment</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GLK-C5</td>
+<td>C5</td>
+<td>523.251</td>
+<td>9.883</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Pilot low/longest bar; bounds K-constant + cut-long discipline.</td>
+</tr>
+<tr class="even">
+<td>GLK-Csharp5</td>
+<td>C#5</td>
+<td>554.365</td>
+<td>9.602</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-D5</td>
+<td>D5</td>
+<td>587.330</td>
+<td>9.328</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-Dsharp5</td>
+<td>D#5</td>
+<td>622.254</td>
+<td>9.063</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-E5</td>
+<td>E5</td>
+<td>659.255</td>
+<td>8.805</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-F5</td>
+<td>F5</td>
+<td>698.456</td>
+<td>8.554</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-Fsharp5</td>
+<td>F#5</td>
+<td>739.989</td>
+<td>8.311</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-G5</td>
+<td>G5</td>
+<td>783.991</td>
+<td>8.074</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-Gsharp5</td>
+<td>G#5</td>
+<td>830.609</td>
+<td>7.844</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-A5</td>
+<td>A5</td>
+<td>880.000</td>
+<td>7.621</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A5 = 440·2 reference; mid-scale K check.</td>
+</tr>
+<tr class="odd">
+<td>GLK-Asharp5</td>
+<td>A#5</td>
+<td>932.328</td>
+<td>7.404</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-B5</td>
+<td>B5</td>
+<td>987.767</td>
+<td>7.193</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-C6</td>
+<td>C6</td>
+<td>1046.502</td>
+<td>6.988</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-Csharp6</td>
+<td>C#6</td>
+<td>1108.731</td>
+<td>6.789</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-D6</td>
+<td>D6</td>
+<td>1174.659</td>
+<td>6.596</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-Dsharp6</td>
+<td>D#6</td>
+<td>1244.508</td>
+<td>6.408</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-E6</td>
+<td>E6</td>
+<td>1318.510</td>
+<td>6.226</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-F6</td>
+<td>F6</td>
+<td>1396.913</td>
+<td>6.049</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-Fsharp6</td>
+<td>F#6</td>
+<td>1479.978</td>
+<td>5.876</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-G6</td>
+<td>G6</td>
+<td>1567.982</td>
+<td>5.709</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-Gsharp6</td>
+<td>G#6</td>
+<td>1661.219</td>
+<td>5.547</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-A6</td>
+<td>A6</td>
+<td>1760.000</td>
+<td>5.389</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-Asharp6</td>
+<td>A#6</td>
+<td>1864.655</td>
+<td>5.235</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-B6</td>
+<td>B6</td>
+<td>1975.533</td>
+<td>5.086</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-C7</td>
+<td>C7</td>
+<td>2093.005</td>
+<td>4.941</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Pilot high/shortest bar; validates short-bar dimensional sensitivity
+(~1% cent shift per ~0.025 in).</td>
+</tr>
+<tr class="even">
+<td>GLK-PENT-C5</td>
+<td>C5</td>
+<td>523.251</td>
+<td>9.883</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Art-fair pentatonic; share aluminum stock with chromatic.</td>
+</tr>
+<tr class="odd">
+<td>GLK-PENT-D5</td>
+<td>D5</td>
+<td>587.330</td>
+<td>9.328</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-PENT-E5</td>
+<td>E5</td>
+<td>659.255</td>
+<td>8.805</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-PENT-G5</td>
+<td>G5</td>
+<td>783.991</td>
+<td>8.074</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-PENT-A5</td>
+<td>A5</td>
+<td>880.000</td>
+<td>7.621</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-PENT-C6</td>
+<td>C6</td>
+<td>1046.502</td>
+<td>6.988</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-PENT-D6</td>
+<td>D6</td>
+<td>1174.659</td>
+<td>6.596</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-PENT-E6</td>
+<td>E6</td>
+<td>1318.510</td>
+<td>6.226</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-PENT-G6</td>
+<td>G6</td>
+<td>1567.982</td>
+<td>5.709</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GLK-PENT-A6</td>
+<td>A6</td>
+<td>1760.000</td>
+<td>5.389</td>
+<td>prebuild</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GLK-C5</td>
+<td>C5</td>
+<td>523.251</td>
+<td>9.883</td>
+<td>flat_bar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cut-long aluminum blank; mass-and-strike test on foam supports
+before drilling node holes.</td>
+</tr>
+<tr class="odd">
+<td>GLK-C5</td>
+<td>C5</td>
+<td>523.251</td>
+<td>9.883</td>
+<td>post_trim</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>After trim-to-length and deburr; supports at node positions; record
+measured Hz.</td>
+</tr>
+<tr class="even">
+<td>GLK-C5</td>
+<td>C5</td>
+<td>523.251</td>
+<td>9.883</td>
+<td>mounted</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cord through node holes with rubber grommets; supported on 1/8”
+stainless rod.</td>
+</tr>
+<tr class="odd">
+<td>GLK-C5</td>
+<td>C5</td>
+<td>523.251</td>
+<td>9.883</td>
+<td>framed</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Final walnut frame; check buzz at soft/medium/loud strikes; record
+sustain after first 6 dB drop.</td>
+</tr>
+<tr class="even">
+<td>GLK-A5</td>
+<td>A5</td>
+<td>880.000</td>
+<td>7.621</td>
+<td>flat_bar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cut-long aluminum blank; mass-and-strike test on foam supports
+before drilling node holes.</td>
+</tr>
+<tr class="odd">
+<td>GLK-A5</td>
+<td>A5</td>
+<td>880.000</td>
+<td>7.621</td>
+<td>post_trim</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>After trim-to-length and deburr; supports at node positions; record
+measured Hz.</td>
+</tr>
+<tr class="even">
+<td>GLK-A5</td>
+<td>A5</td>
+<td>880.000</td>
+<td>7.621</td>
+<td>mounted</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cord through node holes with rubber grommets; supported on 1/8”
+stainless rod.</td>
+</tr>
+<tr class="odd">
+<td>GLK-A5</td>
+<td>A5</td>
+<td>880.000</td>
+<td>7.621</td>
+<td>framed</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Final walnut frame; check buzz at soft/medium/loud strikes; record
+sustain after first 6 dB drop.</td>
+</tr>
+<tr class="even">
+<td>GLK-C7</td>
+<td>C7</td>
+<td>2093.005</td>
+<td>4.941</td>
+<td>flat_bar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cut-long aluminum blank; mass-and-strike test on foam supports
+before drilling node holes.</td>
+</tr>
+<tr class="odd">
+<td>GLK-C7</td>
+<td>C7</td>
+<td>2093.005</td>
+<td>4.941</td>
+<td>post_trim</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>After trim-to-length and deburr; supports at node positions; record
+measured Hz.</td>
+</tr>
+<tr class="even">
+<td>GLK-C7</td>
+<td>C7</td>
+<td>2093.005</td>
+<td>4.941</td>
+<td>mounted</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cord through node holes with rubber grommets; supported on 1/8”
+stainless rod.</td>
+</tr>
+<tr class="odd">
+<td>GLK-C7</td>
+<td>C7</td>
+<td>2093.005</td>
+<td>4.941</td>
+<td>framed</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Final walnut frame; check buzz at soft/medium/loud strikes; record
+sustain after first 6 dB drop.</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break">
+
+</div>
+<h2 id="supplier-rfq.md">supplier-rfq.md</h2>
+<p>RFQ template covering aluminum + alternates + walnut + hardware.</p>
+<h1 id="supplier-rfq---glockenspiel-c5-c7-build">Supplier RFQ -
+Glockenspiel C5-C7 Build</h1>
+<h2 id="scope">Scope</h2>
+<p>Request quotes for one 25-bar C5-C7 chromatic glockenspiel prototype
+build, with optional materials for a 10-bar pentatonic art-fair variant.
+Prices, stock, and lead times are intentionally not assumed in this
+repo; verify current facts before purchasing.</p>
+<h2 id="bar-stock---aluminum-primary">Bar Stock - Aluminum
+(Primary)</h2>
+<p>Please quote 6061-T6 aluminum flat bar suitable for tuned percussion
+bars.</p>
+<p>Required:</p>
+<ul>
+<li>Dimensions: <code>0.250 in x 1.000 in</code> flat bar.</li>
+<li>Length: minimum 18 ft total per build (chromatic + pentatonic +
+pilot scrap).</li>
+<li>Temper: <code>T6</code> strongly preferred for consistent K
+constant.</li>
+<li>Surface: free of deep scratches in playing area.</li>
+</ul>
+<p>Please return:</p>
+<ul>
+<li>Mill / mill lot identifier (so the K-calibration record stays
+traceable across rebuilds).</li>
+<li>Available temper variants and their K-constant impact, if
+known.</li>
+<li>Cutting service availability (longest single bar needed is 11 in cut
+from 12-ft stock).</li>
+<li>Mill cert availability for E and rho (used to recompute K_metal
+independently).</li>
+</ul>
+<h2 id="bar-stock---alternate-metals-optional">Bar Stock - Alternate
+Metals (Optional)</h2>
+<p>Please quote alternate flat-bar options at the same
+<code>0.250 in x 1.000 in</code> cross-section, in lengths sufficient
+for one 25-bar build per metal:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metal</th>
+<th>Spec</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Brass C260</td>
+<td>Yellow brass C260 flat bar</td>
+<td>Premium warm tone variant</td>
+</tr>
+<tr class="even">
+<td>Steel 1018</td>
+<td>Cold-rolled 1018 flat bar</td>
+<td>Loud / sharp tone variant</td>
+</tr>
+<tr class="odd">
+<td>304 Stainless</td>
+<td>304 stainless steel flat bar</td>
+<td>Outdoor / weather-resistant variant</td>
+</tr>
+<tr class="even">
+<td>Phosphor Bronze</td>
+<td>C510 or C544 phosphor bronze flat bar</td>
+<td>Best-sustain premium variant</td>
+</tr>
+</tbody>
+</table>
+<p>Each metal alters the K constant materially; the user will regenerate
+<code>family-spec.csv</code> from the workbook before cutting.</p>
+<h2 id="frame-hardwood">Frame Hardwood</h2>
+<p>Please quote Black Walnut frame stock suitable for CNC-routed
+glockenspiel frames.</p>
+<p>Required:</p>
+<ul>
+<li>Black Walnut, 4/4 dressed to <code>0.750 in</code> thick.</li>
+<li>Clear straight-grain stock; no checks in finished area.</li>
+<li>Minimum dimensions: enough for two rails (about
+<code>36 in x 3 in</code> finished) plus end caps and an optional
+accidental row.</li>
+<li>Quantity: enough for one frame plus 1 spare rail.</li>
+</ul>
+<p>Acceptable substitutes (functionally equivalent for tuning purposes;
+aesthetics differ):</p>
+<ul>
+<li>Hard maple</li>
+<li>Cherry</li>
+</ul>
+<h2 id="hardware">Hardware</h2>
+<p>Please quote:</p>
+<ul>
+<li>550 paracord or low-stretch braided nylon cord, 4 mm diameter.</li>
+<li>Rubber grommets, <code>0.1875 in</code> ID, available in Shore 30A /
+50A / 70A durometers (sample of three durometers required for
+pilot).</li>
+<li>1/8 in 304 stainless steel rod in 36 in lengths (qty 2 minimum per
+build).</li>
+<li>Self-adhesive 1/2 in rubber feet (qty 4 per frame).</li>
+<li>Frame fastener kit: wood screws, threaded inserts, washers; prefer
+removable.</li>
+</ul>
+<h2 id="mallets">Mallets</h2>
+<p>Please quote at least two pairs from the following:</p>
+<ul>
+<li>Hard rubber head (default), 1.0 in head dia, 8-10 in handle.</li>
+<li>Brass head (orchestral upgrade), 0.75 in head dia, 8-10 in
+handle.</li>
+<li>Lexan or Delrin head (alternate), 0.75-1.0 in head dia, 8-10 in
+handle.</li>
+</ul>
+<h2 id="cnc-and-bar-tooling">CNC and Bar Tooling</h2>
+<p>Please quote:</p>
+<ul>
+<li>1/4 in carbide downcut spiral router bit, hardwood-capable.</li>
+<li>1/8 in carbide upcut spiral router bit, hardwood-capable.</li>
+<li>1/8 in V-bit (60 deg) for optional inlay.</li>
+<li>3/16 in HSS or carbide drill bit for aluminum (brad-point or
+jobber).</li>
+<li>80T or 100T carbide chop-saw blade for non-ferrous metals.</li>
+</ul>
+<p>Include shank diameter, cut length, recommended feed/speed range, and
+replacement availability.</p>
+<h2 id="measurement">Measurement</h2>
+<p>Please quote:</p>
+<ul>
+<li>Chromatic tuner or strobe with reliable readout up to 2.5 kHz (must
+read C7 = 2093 Hz). Peterson StroboClip HD or equivalent.</li>
+</ul>
+<h2 id="response-format">Response Format</h2>
+<p>Please return:</p>
+<pre class="text"><code>item
+supplier part number
+material/spec
+actual dimensions / temper / lot id
+quantity available
+unit price
+lead time
+shipping estimate
+notes/substitution risks</code></pre>
+<div class="page-break">
+
+</div>
+<h2 id="visual-bom-brief.md">visual-bom-brief.md</h2>
+<p>Image-forward visual BOM plate spec.</p>
+<h1 id="visual-bom-brief">Visual BOM Brief</h1>
+<h2 id="goal">Goal</h2>
+<p>Create a visual BOM plate that lets another maker understand the
+glockenspiel build at a glance: bar set, walnut frame, mounting
+hardware, mallets, CNC and bar tooling, and measurement gear.</p>
+<h2 id="required-views">Required Views</h2>
+<ol type="1">
+<li>Hero view of the assembled C5-C7 chromatic glockenspiel on a
+finished walnut frame, mallets to one side.</li>
+<li>Exploded view showing bars above the front and back walnut rails,
+with cord, grommets, and stainless support rods called out.</li>
+<li>Detail inset for one bar: 3/16 in node holes, top/bottom faces,
+dimensional callouts (L, w, t).</li>
+<li>Detail inset for the mounting cross-section: bar, grommet, cord,
+walnut pocket, stainless support rod.</li>
+<li>Detail inset for one mallet pair (hard rubber default + brass
+upgrade).</li>
+<li>Material swatches: 6061-T6 aluminum bar stock, Black Walnut frame
+stock, paracord, rubber grommets, stainless support rod, MDF/plywood jig
+stock.</li>
+</ol>
+<h2 id="bom-rows-to-show">BOM Rows To Show</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Visual Needed</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tuned aluminum bars</td>
+<td>Actual shop photo once cut; concept placeholder acceptable before
+build</td>
+<td><code>family-spec.csv</code></td>
+</tr>
+<tr class="even">
+<td>Alternate metals (Brass, Steel, SS, Phosphor Bronze)</td>
+<td>Supplier image; small swatch row</td>
+<td><code>sourcing.csv</code></td>
+</tr>
+<tr class="odd">
+<td>Walnut frame stock</td>
+<td>CAD render or shop photo</td>
+<td><code>cad/</code></td>
+</tr>
+<tr class="even">
+<td>Paracord (mounting cord)</td>
+<td>Supplier image or shop photo</td>
+<td><code>bom.csv</code></td>
+</tr>
+<tr class="odd">
+<td>Rubber grommets (3 durometers)</td>
+<td>Supplier image with durometer label</td>
+<td><code>bom.csv</code></td>
+</tr>
+<tr class="even">
+<td>1/8 in stainless support rod</td>
+<td>Supplier image or shop photo</td>
+<td><code>bom.csv</code></td>
+</tr>
+<tr class="odd">
+<td>Hard rubber + brass mallets</td>
+<td>Shop photo</td>
+<td><code>bom.csv</code></td>
+</tr>
+<tr class="even">
+<td>CNC bits (1/4 downcut, 1/8 upcut, 1/8 V-bit)</td>
+<td>Supplier image</td>
+<td><code>bom.csv</code></td>
+</tr>
+<tr class="odd">
+<td>3/16 in drill bit for aluminum</td>
+<td>Supplier image</td>
+<td><code>bom.csv</code></td>
+</tr>
+<tr class="even">
+<td>Chromatic tuner</td>
+<td>Supplier image or shop photo</td>
+<td><code>validation.csv</code> workflow</td>
+</tr>
+</tbody>
+</table>
+<h2 id="labeling-rules">Labeling Rules</h2>
+<ul>
+<li>Label generated images as concept placeholders.</li>
+<li>Do not use generated images for exact dimensions.</li>
+<li>Every dimension callout must match <code>family-spec.csv</code> or
+be marked <code>TBD</code>.</li>
+<li>Keep supplier prices out of the visual until current quotes are
+verified.</li>
+<li>The five-metal K-comparison is a useful side panel (E vs rho scatter
+sized by K) — see workbook §6 row 165.</li>
+</ul>
+<h2 id="first-plate-layout">First Plate Layout</h2>
+<p>Top: title (Glockenspiel C5-C7), date, range (C5-C7 chromatic +
+C-pentatonic art-fair), primary material (6061-T6 aluminum).</p>
+<p>Middle left: exploded assembly with numbered callouts.</p>
+<p>Middle right: BOM table grouped by bar set, frame, hardware, mallets,
+tooling, measurement.</p>
+<p>Side panel: metal K-constant scatter (E vs rho axes, points sized by
+K). Shows aluminum/steel cluster vs brass/phosphor-bronze cluster.</p>
+<p>Bottom: assumptions (workbook K is first-pass; pilot K-calibration
+required; durometer pilot required) and missing purchase-verification
+items.</p>
+<div class="page-break">
+
+</div>
+<h2 id="jig-decision.md">jig-decision.md</h2>
+<p>Pilot fixture decisions and release gates.</p>
+<h1 id="glockenspiel-jig-decision-record">Glockenspiel Jig Decision
+Record</h1>
+<p>Generated: 2026-05-08</p>
+<h2 id="purpose">Purpose</h2>
+<p>This file is the manufacturing decision layer for the glockenspiel
+packet. The design table gives bar dimensions; the CNC setup sheet gives
+operations on the walnut frame. This record decides which jigs earn
+their way into the first build, what each jig controls, and which
+validation row proves the decision worked.</p>
+<p>The active recommendation is a staged jig system, not one universal
+fixture. The pilot build should make only the jigs needed to cut, drill,
+and mount C5, A5, and C7. The remaining 22 chromatic bars wait until
+those three pilot bars validate K-constant, node-hole geometry, and
+mounting damping.</p>
+<h2 id="source-inputs">Source Inputs</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>family-spec.csv</code></td>
+<td>Bar length, width, thickness, node positions per note.</td>
+</tr>
+<tr class="even">
+<td><code>design.md</code></td>
+<td>Free-free metal beam model, mounting strategy, K-calibration
+discipline.</td>
+</tr>
+<tr class="odd">
+<td><code>cnc/setup-sheet.md</code></td>
+<td>Operation sequence, datum scheme, tool list, pilot gate.</td>
+</tr>
+<tr class="even">
+<td><code>drawings/GLK-C5-body.svg</code>, <code>GLK-A5-body.svg</code>,
+<code>GLK-C7-body.svg</code></td>
+<td>Per-pilot dimensioned drawings.</td>
+</tr>
+<tr class="odd">
+<td><code>drawings/mounting-detail.svg</code></td>
+<td>Node-hole + grommet + cord + stainless-rod section.</td>
+</tr>
+<tr class="even">
+<td><code>drawings/frame-layout.svg</code></td>
+<td>Piano-keyboard layout, naturals-front / sharps-back rows.</td>
+</tr>
+<tr class="odd">
+<td><code>validation.csv</code></td>
+<td>Measurement rows that decide whether to scale from pilot to full
+set.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="datum-rules">Datum Rules</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Datum</th>
+<th>Meaning</th>
+<th>Must survive</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>Top face of the bar</td>
+<td>Cut to length, drill, deburr, strike test, mounting.</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>Left end of the bar</td>
+<td>Length mark, node mark 1, drill hole 1.</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>Bar centerline</td>
+<td>Node hole drilling, mounting, frame layout.</td>
+</tr>
+</tbody>
+</table>
+<p>If a jig loses A/B/C, the bar is no longer traceable to
+<code>family-spec.csv</code>; stop and remark before cutting.</p>
+<h2 id="pilot-decision">Pilot Decision</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pilot bar</th>
+<th>Why it is in the pilot</th>
+<th>Pass gate before full set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C5</td>
+<td>Longest bar (9.883 in), lowest pitch (523 Hz). Validates the
+workbook K constant against the actual stock.</td>
+<td>Cut-long blank Hz produces K_eff within 5% of workbook K. Measured
+Hz after trim within +/- 10 cents of target. Sustain &gt;= 3 s.</td>
+</tr>
+<tr class="even">
+<td>A5</td>
+<td>A5 = 880 Hz reference (one octave above orchestral A4). Mid-scale K
+check.</td>
+<td>Measured Hz within +/- 5 cents of 880 Hz after trim. Mounting does
+not damp below 1.5 s sustain.</td>
+</tr>
+<tr class="odd">
+<td>C7</td>
+<td>Shortest bar (4.941 in), highest pitch (2093 Hz). Validates
+dimensional sensitivity (a 0.025 in length change shifts pitch
+~1%).</td>
+<td>Trim discipline can land C7 within +/- 10 cents in 0.05 in length
+increments. Striker hardness is musical, not harsh.</td>
+</tr>
+</tbody>
+</table>
+<p>Full production is blocked until these rows in
+<code>validation.csv</code> have measured values: <code>flat_bar</code>,
+<code>post_trim</code>, <code>mounted</code>, <code>framed</code> for
+C5, A5, and C7.</p>
+<h2 id="decision-matrix">Decision Matrix</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decision ID</th>
+<th>Operation</th>
+<th>Chosen jig</th>
+<th>Why this choice</th>
+<th>Go/no-go test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>JD-010</td>
+<td>Receive and verify aluminum stock</td>
+<td>Calipers, scratch-awl marking station</td>
+<td>Stock dimension and surface quality must be confirmed before cut
+planning.</td>
+<td>Thickness 0.250 +/- 0.005 in, width 1.000 +/- 0.010 in, no deep
+scratches in playing area.</td>
+</tr>
+<tr class="even">
+<td>JD-020</td>
+<td>Mark bar length and node positions</td>
+<td>Stop-block sled with scribe and centerline gauge</td>
+<td>Repeatability matters more than speed; a misplaced node hole damps
+the bar.</td>
+<td>Length within +/- 0.020 in of
+<code>predicted_length_in + 0.25</code>; node 1/2 within +/- 0.020 in of
+<code>0.2242·L</code> and <code>0.7758·L</code>.</td>
+</tr>
+<tr class="odd">
+<td>JD-030</td>
+<td>Cut to length</td>
+<td>Chop saw with carbide non-ferrous blade and stop block, OR band saw
+with miter gauge</td>
+<td>Chop saw is faster and squarer; band saw is safer for short pilot
+bars. Pick one and document.</td>
+<td>Cut squareness &lt;= 0.5 deg from perpendicular; deburred to
+no-snag.</td>
+</tr>
+<tr class="even">
+<td>JD-040</td>
+<td>Drill node holes</td>
+<td>Drill press with V-block jig referenced to centerline, hardwood
+backer, depth stop</td>
+<td>Holes off-axis or off-node will damp the bar; the V-block + backer
+is the standard pattern.</td>
+<td>Holes 0.1875 +/- 0.005 in, perpendicular within 1 deg, no edge
+tear-out, deburred both faces.</td>
+</tr>
+<tr class="odd">
+<td>JD-050</td>
+<td>Strike-test on pilot supports</td>
+<td>Foam-block node-support cradle, dynamic mic, tuner</td>
+<td>A consistent acoustic datum is required to compare flat vs mounted
+vs framed.</td>
+<td>Same support spacing every test; measured Hz repeatable within 2
+cents across three strikes.</td>
+</tr>
+<tr class="even">
+<td>JD-060</td>
+<td>Mounting prototype rig</td>
+<td>Three short walnut blocks (drilled for grommets, slotted for cord,
+drilled for stainless rod), test cord</td>
+<td>Sustain depends on grommet durometer and cord tension; need to test
+before frame routing.</td>
+<td>Pilot bars retain &gt;= 75% of flat-bar sustain when mounted.</td>
+</tr>
+<tr class="odd">
+<td>JD-070</td>
+<td>Walnut frame layout template</td>
+<td>Full-size paper or MDF template marked with chromatic bar positions,
+sharps/naturals rows, hand zones</td>
+<td>Player reach must be validated before cutting walnut.</td>
+<td>Player reaches all bars without shoulder strain; mallet trajectory
+clear of frame.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rejected-fixture-options">Rejected Fixture Options</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rejected option</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Single 25-bar CNC nest for all node-hole drilling</td>
+<td>Too much aluminum in one fixture before pilot K is confirmed; one
+wrong K kills the lot.</td>
+</tr>
+<tr class="even">
+<td>Permanent press-fit grommets in finished walnut frame</td>
+<td>Locks in durometer choice before pilot sustain test; rework requires
+destroying the frame.</td>
+</tr>
+<tr class="odd">
+<td>Final furniture-grade walnut frame on first build</td>
+<td>The frame should validate ergonomics, mallet reach, and grommet
+durometer before final joinery.</td>
+</tr>
+<tr class="even">
+<td>Resonator tubes under each bar</td>
+<td>Out of scope per workbook §3 row 140; small bars at C5-C7 do not
+benefit from quarter-wave coupling at usable tube lengths.</td>
+</tr>
+<tr class="odd">
+<td>Arch undercut (marimba-style)</td>
+<td>Out of scope per workbook §3; metal bars want a dry, bright tone,
+not lowered fundamental.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jig-build-order">Jig Build Order</h2>
+<ol type="1">
+<li>Build only JD-010 through JD-050 for the pilot set.</li>
+<li>Cut and measure C5, A5, C7 through <code>flat_bar</code> and
+<code>post_trim</code> validation rows.</li>
+<li>Confirm K_eff and trim discipline before drilling node holes on
+remaining bars.</li>
+<li>Build JD-060 (mounting prototype) with three durometer candidates;
+measure sustain.</li>
+<li>Build JD-070 (frame template) and validate reach.</li>
+<li>Cut the remaining 22 chromatic bars (and 7 additional pentatonic
+bars if both scales are being built) using the calibrated K and trim
+discipline.</li>
+<li>Route the walnut frame; mount all bars; run final
+<code>framed</code> validation row.</li>
+</ol>
+<h2 id="validation-rows-to-preserve">Validation Rows To Preserve</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Row pattern</th>
+<th>Purpose</th>
+<th>Release threshold</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>flat_bar</code></td>
+<td>Cut-long blank Hz; K-calibration.</td>
+<td>K_eff within 5% of workbook K, or workbook K updated.</td>
+</tr>
+<tr class="even">
+<td><code>post_trim</code></td>
+<td>After trim-to-length and deburr; supports at nodes.</td>
+<td>Within +/- 10 cents of target Hz for pilot bars.</td>
+</tr>
+<tr class="odd">
+<td><code>mounted</code></td>
+<td>After cord + grommet + stainless rod mounting on test rig.</td>
+<td>Sustain &gt;= 75% of flat-bar sustain; pitch shift &lt;= 5
+cents.</td>
+</tr>
+<tr class="even">
+<td><code>framed</code></td>
+<td>After installation in final walnut frame.</td>
+<td>Within +/- 5 cents at soft dynamics; no buzz at any dynamic.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="open-decisions">Open Decisions</h2>
+<ul>
+<li>Final grommet durometer (Shore 30A vs 50A vs 70A) remains TBD until
+pilot sustain measurements.</li>
+<li>Striker hardness selection (brass vs hard rubber vs lexan/Delrin) —
+at minimum two pairs ship with the instrument; let the player pick.</li>
+<li>Whether the first build uses a temporary MDF validation frame or
+jumps directly to walnut.</li>
+<li>Whether the chromatic and pentatonic builds share one frame jig with
+two drilling templates, or use independent jigs.</li>
+<li>Whether to run a parallel brass / phosphor-bronze pilot (one C5 bar
+in each metal) to validate the K library beyond aluminum.</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="risks.md">risks.md</h2>
+<p>Acoustic / structural / ergonomic / supply / fit-finish risks.</p>
+<h1 id="glockenspiel-risk-register">Glockenspiel Risk Register</h1>
+<h2 id="acoustic-risks">Acoustic Risks</h2>
+<h3 id="bar-pitch-misses-workbook-prediction-k-constant-variance">Bar
+pitch misses workbook prediction (K-constant variance)</h3>
+<ul>
+<li>Risk: Selected 6061-T6 aluminum stock has a different effective K
+than the workbook value of 204431. Heat-treat condition (T6 vs T4 vs
+annealed), extrusion vs sawn flat-bar, cold-work history, and
+dimensional tolerance all shift effective K by 5-10%.</li>
+<li>Impact: Every bar cut to <code>predicted_length_in</code> lands
+sharp or flat by a consistent amount; without trim allowance the entire
+batch is scrap.</li>
+<li>Test: Cut C5, A5, C7 pilot bars cut-long by 0.25 in. Mount on foam
+at nodes. Compute <code>K_eff = f * L^2 / t</code> from measured
+Hz.</li>
+<li>Pass criterion: Pilot K_eff differs from workbook K by less than 5%,
+or the workbook K is updated to match before the remaining 22 bars are
+cut.</li>
+<li>Mitigation: Always cut bars at predicted length + 0.25 in. Tune by
+removing material from both ends. Update <code>family-spec.csv</code>
+and workbook B21 with the calibrated K.</li>
+</ul>
+<h3 id="mounting-damps-fundamental-or-kills-sustain">Mounting damps
+fundamental or kills sustain</h3>
+<ul>
+<li>Risk: Rubber grommet durometer, cord tension, or stainless support
+rod contact damps the free-free first mode. Free-free bars require
+contact only at the nodes; any contact away from the node line shortens
+sustain.</li>
+<li>Impact: Bars sound dead, sustain drops below 1 second, or pitch
+shifts flat under load.</li>
+<li>Test: Pilot each grommet candidate (Shore 30A, 50A, 70A) on
+C5/A5/C7. Measure sustain to first 6 dB drop after a moderate
+strike.</li>
+<li>Pass criterion: Sustain &gt;= 3 s for C5 fundamental, &gt;= 1.5 s
+for A5, &gt;= 0.8 s for C7. Pitch shift under mounting &lt;= 5 cents
+from flat-bar measurement.</li>
+<li>Mitigation: Soften grommets, increase node-hole diameter, or
+relocate the support rod so it does not contact the bar between
+nodes.</li>
+</ul>
+<h3 id="striker-hardness-produces-unwanted-timbre">Striker hardness
+produces unwanted timbre</h3>
+<ul>
+<li>Risk: Brass strikers on aluminum bars produce a harsh, ear-piercing
+attack at C7 frequencies (above 2 kHz).</li>
+<li>Impact: Player or audience experiences listening fatigue; instrument
+is unpleasant in small rooms.</li>
+<li>Test: Strike each pilot bar with brass, hard rubber, and lexan
+strikers. Record perceived timbre and decay.</li>
+<li>Pass criterion: At least one striker option produces a tone judged
+“musical” rather than “harsh” by two listeners in the build space.</li>
+<li>Mitigation: Ship the instrument with hard-rubber strikers as the
+default and brass as an optional upgrade; document the trade-off in the
+assembly manual.</li>
+</ul>
+<h2 id="structural-risks">Structural Risks</h2>
+<h3 id="drilling-node-holes-splits-or-burrs-the-aluminum">Drilling node
+holes splits or burrs the aluminum</h3>
+<ul>
+<li>Risk: Drilling 3/16 in holes through 1/4 in flat bar without proper
+backing causes burr-up, edge tear-out, or work-hardening.</li>
+<li>Impact: Cracked bar, rough hole, asymmetric mounting, audible buzz
+at the node.</li>
+<li>Test: Drill sample holes in offcut aluminum with the intended bit
+and backing board. Inspect for clean entry/exit and freedom from
+burrs.</li>
+<li>Pass criterion: Clean holes, no visible burrs after deburring, no
+cracks visible under magnification.</li>
+<li>Mitigation: Use a sharp HSS or carbide bit, peck-drill through
+hardwood backer, deburr both faces, lubricate with cutting fluid.</li>
+</ul>
+<h3 id="bar-to-stainless-rod-metal-contact-buzz">Bar-to-stainless-rod
+metal contact buzz</h3>
+<ul>
+<li>Risk: 1/8 in stainless support rod contacts the underside of a bar
+between the cord supports, causing audible buzz at moderate-to-loud
+strike intensity.</li>
+<li>Impact: Metallic rattle on every strike; instrument is unusable for
+performance.</li>
+<li>Test: Strike each bar at three dynamic levels (soft, medium, loud)
+on the assembled frame.</li>
+<li>Pass criterion: No audible rattle or buzz at any dynamic.</li>
+<li>Mitigation: Lower the stainless rod relative to the bar, add a
+continuous foam strip on top of the rod, or remove the rod and rely on
+cord-only mounting.</li>
+</ul>
+<h2 id="ergonomic-risks">Ergonomic Risks</h2>
+<h3 id="frame-too-wide-for-player-reach">Frame too wide for player
+reach</h3>
+<ul>
+<li>Risk: 25-bar chromatic frame is about 33 in wide. With sharps in a
+back row offset 0.5 in higher, the playing surface depth approaches 4
+in.</li>
+<li>Impact: Player cannot reach center bars without leaning; mallet
+strikes lose accuracy at the edges.</li>
+<li>Test: Tape a full-size bar layout on a bench and have the intended
+player reach every bar from a normal stance.</li>
+<li>Pass criterion: All 25 bars reachable without shoulder strain in
+less than 1 second per note.</li>
+<li>Mitigation: Reduce range to two octaves (C5-C6, 13 bars), use the
+pentatonic 10-bar variant, or split the chromatic into a stacked /
+curved frame.</li>
+</ul>
+<h3 id="mallet-handle-length-wrong-for-table-height-frame">Mallet handle
+length wrong for table-height frame</h3>
+<ul>
+<li>Risk: Stock 8-10 in mallet handles assume the frame sits at
+standing-shop-bench height (~36 in). A seated player at a 30 in table
+will overshoot strikes.</li>
+<li>Impact: Inconsistent attack; player cannot control dynamics.</li>
+<li>Test: Strike each bar at the intended playing surface height;
+measure mallet head trajectory.</li>
+<li>Pass criterion: Mallet head can land flat on the bar center without
+forearm strain.</li>
+<li>Mitigation: Provide both handle lengths, or specify the intended
+playing surface height in the BOM.</li>
+</ul>
+<h2 id="supply-risks">Supply Risks</h2>
+<h3 id="aluminum-stock-lot-variation">Aluminum stock lot variation</h3>
+<ul>
+<li>Risk: Different mill lots of 6061-T6 1/4 in x 1 in flat bar carry
+slightly different temper and effective K. A second build using a new
+lot can produce systematically different pitches.</li>
+<li>Impact: Second-batch instrument plays out of tune relative to
+first.</li>
+<li>Test: Each new aluminum lot triggers a fresh K-calibration pilot
+(C5/A5/C7 only).</li>
+<li>Pass criterion: Each lot’s K_eff is documented in
+<code>validation.csv</code> and <code>family-spec.csv</code> is updated
+before the run.</li>
+<li>Mitigation: Treat K as a per-lot parameter. Buy enough stock for a
+complete instrument from one mill lot.</li>
+</ul>
+<h3 id="walnut-frame-stock-availability">Walnut frame stock
+availability</h3>
+<ul>
+<li>Risk: Clear straight-grain Black Walnut for the CNC-routed frame may
+be expensive or out of stock locally.</li>
+<li>Impact: Build delay or fall-back to a less attractive frame
+wood.</li>
+<li>Test: Quote walnut, hard maple, cherry from local hardwood dealers
+before committing.</li>
+<li>Pass criterion: Selected wood available within the build’s lead-time
+budget at acceptable cost.</li>
+<li>Mitigation: Hard maple is an acceptable substitute for the frame;
+cherry works if walnut is unavailable. None of these affect bar
+tuning.</li>
+</ul>
+<h3 id="metal-supplier-substitution-risk-alternative-metals">Metal
+supplier substitution risk (alternative metals)</h3>
+<ul>
+<li>Risk: If the user switches from aluminum to brass / steel /
+stainless / phosphor bronze, the K constant changes by up to 30%.
+Reusing a packet computed for aluminum produces wildly wrong
+lengths.</li>
+<li>Impact: Whole-batch scrap.</li>
+<li>Test: Verify <code>material</code> and <code>k_constant</code>
+columns in <code>family-spec.csv</code> match the actual metal before
+any cutting.</li>
+<li>Pass criterion: Metal name and K constant match.</li>
+<li>Mitigation: Regenerate <code>family-spec.csv</code> from the
+workbook with the new K value before cutting. Document the swap in
+<code>validation.csv</code> notes.</li>
+</ul>
+<h2 id="fit-and-finish-risks">Fit And Finish Risks</h2>
+<h3 id="clear-coat-finish-detunes-bars">Clear-coat finish detunes
+bars</h3>
+<ul>
+<li>Risk: Lacquer or clear coat on aluminum adds mass and damping; pitch
+can drop 3-10 cents and sustain can shorten.</li>
+<li>Impact: Bars finished after tuning play flat.</li>
+<li>Test: Apply finish to one offcut and one tuned sacrificial bar.
+Measure Hz before and after.</li>
+<li>Pass criterion: Pitch shift predictable within +/- 5 cents and
+within final tuning allowance.</li>
+<li>Mitigation: Use a thin finish, tune after finish, or leave bars raw
+with periodic light polish.</li>
+</ul>
+<h3 id="frame-buzz-from-loose-hardware">Frame buzz from loose
+hardware</h3>
+<ul>
+<li>Risk: Wood screws, threaded inserts, washers, or rubber feet rattle
+against the frame at moderate-to-loud strikes.</li>
+<li>Impact: Buzz on every strike; instrument fails final
+validation.</li>
+<li>Test: Strike every bar at soft / medium / loud dynamics on the fully
+assembled frame; listen for any non-bar sound source.</li>
+<li>Pass criterion: No audible buzz at any dynamic.</li>
+<li>Mitigation: Add thread-locker, soft washers, or felt pads under
+hardware. Replace rubber feet if they shed grip on the playing
+surface.</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="photo-shotlist.md">photo-shotlist.md</h2>
+<p>Build-log photo plan.</p>
+<h1 id="photo-shotlist">Photo Shotlist</h1>
+<p>This shotlist follows the repo-level photo pipeline expectations from
+<code>instrument-maker/docs/photo-pipeline.md</code>: capture real
+process images first, use generated or supplier images only as labeled
+placeholders, and keep build-log image names stable enough for
+<code>site/index.html</code>.</p>
+<h2 id="intake-and-materials">Intake And Materials</h2>
+<ul>
+<li><code>images/01-workbook-table.png</code>: screenshot of
+<code>glockenspiel-design-table.xlsx</code> showing the Glockenspiel
+sheet with K library and bar calculator.</li>
+<li><code>images/02-aluminum-stock.jpg</code>: rough 6061-T6 flat bar
+with ruler and mill-cert label visible.</li>
+<li><code>images/03-walnut-frame-stock.jpg</code>: walnut boards
+selected for the frame, with a grain-direction arrow.</li>
+<li><code>images/04-hardware-options.jpg</code>: three durometer rubber
+grommets, paracord, 1/8 in stainless rod laid out for the durometer
+pilot.</li>
+<li><code>images/05-mallets-options.jpg</code>: hard rubber, brass, and
+lexan/Delrin mallet pairs side-by-side.</li>
+</ul>
+<h2 id="bar-fabrication">Bar Fabrication</h2>
+<ul>
+<li><code>images/10-bar-marking.jpg</code>: stop-block sled with C5
+blank marked for length and node positions.</li>
+<li><code>images/11-bar-cutting.jpg</code>: chop saw or band saw cutting
+C5 to length.</li>
+<li><code>images/12-bar-deburr.jpg</code>: deburred bar end
+close-up.</li>
+<li><code>images/13-node-drilling.jpg</code>: drill press with V-block
+jig and hardwood backer drilling node hole.</li>
+<li><code>images/14-node-hole-detail.jpg</code>: clean 3/16 in hole
+through the bar.</li>
+</ul>
+<h2 id="tuning-and-mounting">Tuning And Mounting</h2>
+<ul>
+<li><code>images/20-flat-bar-strike.jpg</code>: pilot bar on foam
+supports at nodes with tuner reading Hz.</li>
+<li><code>images/21-trim-to-pitch.jpg</code>: belt sander or fine file
+removing material symmetrically from both ends.</li>
+<li><code>images/22-mounting-rig.jpg</code>: three-block prototype rig
+with three durometer grommets ready for sustain comparison.</li>
+<li><code>images/23-cord-thread.jpg</code>: paracord threaded through
+node holes of one row.</li>
+</ul>
+<h2 id="frame-and-final-assembly">Frame And Final Assembly</h2>
+<ul>
+<li><code>images/30-frame-routing.jpg</code>: walnut rail on CNC router
+with grommet pockets cut.</li>
+<li><code>images/31-frame-layout-test.jpg</code>: full-size paper
+template on bench for ergonomic check.</li>
+<li><code>images/32-mounted-row.jpg</code>: full natural row mounted in
+walnut rail.</li>
+<li><code>images/33-finished-front.jpg</code>: full instrument front
+view.</li>
+<li><code>images/34-finished-side.jpg</code>: side view showing
+accidental row offset.</li>
+<li><code>images/35-detail-grommet.jpg</code>: close-up of one bar in
+its grommet, showing isolation from frame.</li>
+</ul>
+<h2 id="validation">Validation</h2>
+<ul>
+<li><code>images/40-pilot-c5-tuning.jpg</code>: C5 framed and
+measured.</li>
+<li><code>images/41-pilot-a5-tuning.jpg</code>: A5 framed and
+measured.</li>
+<li><code>images/42-pilot-c7-tuning.jpg</code>: C7 framed and
+measured.</li>
+<li><code>images/43-validation-log.jpg</code>: tuner, mic, and
+<code>validation.csv</code> workflow on bench.</li>
+<li><code>images/44-buzz-test.jpg</code>: buzz check at three dynamics
+on the assembled instrument.</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="resources.md">resources.md</h2>
+<p>Provenance, family context, public-safety inventory.</p>
+<h1 id="resources-provenance">Resources &amp; Provenance</h1>
+<h2 id="workbook-lineage">Workbook Lineage</h2>
+<ul>
+<li>Source workbook: <code>glockenspiel-design-table.xlsx</code>
+(committed to this repo).
+<ul>
+<li>Single sheet <code>Glockenspiel</code>, range
+<code>A1:L174</code>.</li>
+<li>94 formula cells, 16 blue input cells.</li>
+<li>Five-metal K library (rows 14-20): 6061-T6 Aluminum, Brass C260,
+Steel 1018, 304 Stainless, Phosphor Bronze.</li>
+<li>Two scale blocks: 25-bar chromatic C5-C7 (rows 23-49) and 10-bar
+C-major pentatonic (rows 92-110).</li>
+<li>Wolfram notebook spec (rows 129-159) and Wolfram exploration ideas
+(rows 161-174).</li>
+</ul></li>
+</ul>
+<h2 id="instrument-family-context">Instrument Family Context</h2>
+<ul>
+<li>Cultural origin: glockenspiel is a modern Western orchestral and
+military-band idiophone. The German name means “bells play”; the form
+derives from sets of small bells used in 18th-19th century military
+bands and was standardized as a bar instrument by Berlioz-era orchestras
+(1819+).</li>
+<li>Synonyms: orchestra bells, bell lyre (marching), orchestral bells
+(some scores).</li>
+<li>Distinguished from xylophone (wood bars, no arch) and marimba (wood
+bars, arch + resonators) by being metal bars without arch or
+resonator.</li>
+</ul>
+<h2 id="reference-repos">Reference Repos</h2>
+<ul>
+<li><code>tonykoop/marimba</code> — closest sibling: free-free beam
+idiophone, same node math, same imperial K formulation, same validation
+discipline. The glockenspiel diverges by using metal instead of wood,
+omitting arch and resonator, and replacing wood K-table with metal
+K-table.</li>
+<li><code>tonykoop/tongue-drum</code> — README convention and
+documentation standard reference.</li>
+<li><code>tonykoop/instrument-maker</code> — catalog this repo is part
+of.</li>
+</ul>
+<h2 id="skill-documentation-lineage">Skill / Documentation Lineage</h2>
+<ul>
+<li>Skill: <code>instrument-maker-v4</code> v4.3 root-mode.</li>
+<li>Reference docs consulted: <code>references/acoustic-models.md</code>
+(Free-Free Beams + empirical-correction guard rules),
+<code>references/new-instruments-v4.md</code> (Glockenspiel section),
+<code>references/repo-relationships.yaml</code> (cantilever-idiophone
+family).</li>
+</ul>
+<h2
+id="empirical-correction-guard-rules-honest-inventory">Empirical-Correction
+Guard Rules (Honest Inventory)</h2>
+<p>The following corrections do NOT apply to this packet:</p>
+<ul>
+<li><strong>NAF K2 corrections</strong> (open-pipe flute bore-diameter
+table) — open-pipe flute model only.</li>
+<li><strong>Vessel Helmholtz corrections</strong> — applies to
+ocarina/udu/gemshorn, not free-free beams.</li>
+<li><strong>Cantilever wood K-table</strong> — applies to fixed-free
+wood beams (tongue drums), not free-free metal bars.</li>
+<li><strong>Marimba arch undercut math</strong> — out of scope for metal
+bars (no arch).</li>
+<li><strong>Quarter-wave resonator math</strong> — out of scope for this
+packet (no resonators).</li>
+</ul>
+<p>The only correction loop that DOES apply: per-lot K calibration from
+pilot measurements, recorded in <code>validation.csv</code> and
+propagated to <code>family-spec.csv</code> and the workbook B21
+cell.</p>
+<h2 id="public-safety-inventory">Public-Safety Inventory</h2>
+<ul>
+<li>No private repo links.</li>
+<li>No local absolute paths in user-facing artifacts.</li>
+<li>No supplier prices frozen as facts
+(<code>current_price_status = not verified</code> throughout).</li>
+<li>No unlicensed images (no images currently committed; placeholders
+documented in <code>photo-shotlist.md</code>).</li>
+<li>No cultural-appropriation flags for the instrument category (modern
+Western orchestral instrument).</li>
+<li>License: CC BY 4.0 per existing <code>LICENSE</code> file.</li>
+</ul>
+<h2 id="open-provenance-questions">Open Provenance Questions</h2>
+<ul>
+<li>Whether the K constants in the workbook material library should be
+regenerated from a single E/rho source (e.g., MatWeb) for traceability
+vs the current literature-pulled values.</li>
+<li>Whether to commit a small <code>data/k-library-source.csv</code>
+documenting where each K came from.</li>
+<li>Whether to add a “what would change for an outdoor sound-garden
+glockenspiel” appendix once the indoor build is validated.</li>
+</ul>
+<div class="page-break">
+
+</div>
+<h2 id="readme.md">README.md</h2>
+<p>Project artifact.</p>
+<h1 id="glockenspiel">Glockenspiel</h1>
+<p>Engineering documentation and parametric design table for the
+glockenspiel — metal bar idiophone tuned via cantilever-beam
+scaling.</p>
+<p>Part of the <a
+href="https://github.com/tonykoop/instrument-maker">tonykoop/instrument-maker</a>
+catalogue.</p>
+<blockquote>
+<p>CAD renders, Wolfram notebook recordings, and a finalized build
+method are forthcoming.</p>
+</blockquote>
+<h2 id="license">License</h2>
+<p><a href="LICENSE">CC BY 4.0</a> — see LICENSE for details.</p>
+<div class="page-break">
+
+</div>
+<h2 id="family-spec.csv">family-spec.csv</h2>
+<p>25 chromatic + 10 pentatonic bar dimensions.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>member_id</th>
+<th>target_note</th>
+<th>midi</th>
+<th>target_hz</th>
+<th>predicted_length_in</th>
+<th>predicted_width_in</th>
+<th>predicted_thick_in</th>
+<th>node_1_in</th>
+<th>node_2_in</th>
+<th>material</th>
+<th>k_constant</th>
+<th>scale_label</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GLK-C5</td>
+<td>C5</td>
+<td>72</td>
+<td>523.251</td>
+<td>9.883</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>2.216</td>
+<td>7.667</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-Csharp5</td>
+<td>C#5</td>
+<td>73</td>
+<td>554.365</td>
+<td>9.602</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>2.153</td>
+<td>7.449</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-D5</td>
+<td>D5</td>
+<td>74</td>
+<td>587.330</td>
+<td>9.328</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>2.091</td>
+<td>7.237</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-Dsharp5</td>
+<td>D#5</td>
+<td>75</td>
+<td>622.254</td>
+<td>9.063</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>2.032</td>
+<td>7.031</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-E5</td>
+<td>E5</td>
+<td>76</td>
+<td>659.255</td>
+<td>8.805</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.974</td>
+<td>6.831</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-F5</td>
+<td>F5</td>
+<td>77</td>
+<td>698.456</td>
+<td>8.554</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.918</td>
+<td>6.636</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-Fsharp5</td>
+<td>F#5</td>
+<td>78</td>
+<td>739.989</td>
+<td>8.311</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.863</td>
+<td>6.447</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-G5</td>
+<td>G5</td>
+<td>79</td>
+<td>783.991</td>
+<td>8.074</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.810</td>
+<td>6.264</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-Gsharp5</td>
+<td>G#5</td>
+<td>80</td>
+<td>830.609</td>
+<td>7.844</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.759</td>
+<td>6.085</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-A5</td>
+<td>A5</td>
+<td>81</td>
+<td>880.000</td>
+<td>7.621</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.709</td>
+<td>5.912</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-Asharp5</td>
+<td>A#5</td>
+<td>82</td>
+<td>932.328</td>
+<td>7.404</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.660</td>
+<td>5.744</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-B5</td>
+<td>B5</td>
+<td>83</td>
+<td>987.767</td>
+<td>7.193</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.613</td>
+<td>5.580</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-C6</td>
+<td>C6</td>
+<td>84</td>
+<td>1046.502</td>
+<td>6.988</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.567</td>
+<td>5.422</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-Csharp6</td>
+<td>C#6</td>
+<td>85</td>
+<td>1108.731</td>
+<td>6.789</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.522</td>
+<td>5.267</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-D6</td>
+<td>D6</td>
+<td>86</td>
+<td>1174.659</td>
+<td>6.596</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.479</td>
+<td>5.117</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-Dsharp6</td>
+<td>D#6</td>
+<td>87</td>
+<td>1244.508</td>
+<td>6.408</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.437</td>
+<td>4.972</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-E6</td>
+<td>E6</td>
+<td>88</td>
+<td>1318.510</td>
+<td>6.226</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.396</td>
+<td>4.830</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-F6</td>
+<td>F6</td>
+<td>89</td>
+<td>1396.913</td>
+<td>6.049</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.356</td>
+<td>4.693</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-Fsharp6</td>
+<td>F#6</td>
+<td>90</td>
+<td>1479.978</td>
+<td>5.876</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.318</td>
+<td>4.559</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-G6</td>
+<td>G6</td>
+<td>91</td>
+<td>1567.982</td>
+<td>5.709</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.280</td>
+<td>4.429</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-Gsharp6</td>
+<td>G#6</td>
+<td>92</td>
+<td>1661.219</td>
+<td>5.547</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.244</td>
+<td>4.303</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-A6</td>
+<td>A6</td>
+<td>93</td>
+<td>1760.000</td>
+<td>5.389</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.208</td>
+<td>4.181</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-Asharp6</td>
+<td>A#6</td>
+<td>94</td>
+<td>1864.655</td>
+<td>5.235</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.174</td>
+<td>4.062</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-B6</td>
+<td>B6</td>
+<td>95</td>
+<td>1975.533</td>
+<td>5.086</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.140</td>
+<td>3.946</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="odd">
+<td>GLK-C7</td>
+<td>C7</td>
+<td>96</td>
+<td>2093.005</td>
+<td>4.941</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.108</td>
+<td>3.834</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C5-C7 chromatic</td>
+<td>Workbook-derived from Glockenspiel sheet (rows 25-49); free-free
+metal beam, 6061-T6 K=204431; nodes at 0.224·L and 0.776·L; metal bars
+carry NO arch undercut and NO resonator (workbook §3 row 140).</td>
+</tr>
+<tr class="even">
+<td>GLK-PENT-C5</td>
+<td>C5</td>
+<td>72</td>
+<td>523.251</td>
+<td>9.883</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>2.216</td>
+<td>7.667</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C major pentatonic art-fair</td>
+<td>Art-fair C major pentatonic (workbook rows 94-103, alt scale row
+122); same bar stock and K as chromatic block; 10-bar set.</td>
+</tr>
+<tr class="odd">
+<td>GLK-PENT-D5</td>
+<td>D5</td>
+<td>74</td>
+<td>587.330</td>
+<td>9.328</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>2.091</td>
+<td>7.237</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C major pentatonic art-fair</td>
+<td>Art-fair C major pentatonic (workbook rows 94-103, alt scale row
+122); same bar stock and K as chromatic block; 10-bar set.</td>
+</tr>
+<tr class="even">
+<td>GLK-PENT-E5</td>
+<td>E5</td>
+<td>76</td>
+<td>659.255</td>
+<td>8.805</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.974</td>
+<td>6.831</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C major pentatonic art-fair</td>
+<td>Art-fair C major pentatonic (workbook rows 94-103, alt scale row
+122); same bar stock and K as chromatic block; 10-bar set.</td>
+</tr>
+<tr class="odd">
+<td>GLK-PENT-G5</td>
+<td>G5</td>
+<td>79</td>
+<td>783.991</td>
+<td>8.074</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.810</td>
+<td>6.264</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C major pentatonic art-fair</td>
+<td>Art-fair C major pentatonic (workbook rows 94-103, alt scale row
+122); same bar stock and K as chromatic block; 10-bar set.</td>
+</tr>
+<tr class="even">
+<td>GLK-PENT-A5</td>
+<td>A5</td>
+<td>81</td>
+<td>880.000</td>
+<td>7.621</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.709</td>
+<td>5.912</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C major pentatonic art-fair</td>
+<td>Art-fair C major pentatonic (workbook rows 94-103, alt scale row
+122); same bar stock and K as chromatic block; 10-bar set.</td>
+</tr>
+<tr class="odd">
+<td>GLK-PENT-C6</td>
+<td>C6</td>
+<td>84</td>
+<td>1046.502</td>
+<td>6.988</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.567</td>
+<td>5.422</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C major pentatonic art-fair</td>
+<td>Art-fair C major pentatonic (workbook rows 94-103, alt scale row
+122); same bar stock and K as chromatic block; 10-bar set.</td>
+</tr>
+<tr class="even">
+<td>GLK-PENT-D6</td>
+<td>D6</td>
+<td>86</td>
+<td>1174.659</td>
+<td>6.596</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.479</td>
+<td>5.117</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C major pentatonic art-fair</td>
+<td>Art-fair C major pentatonic (workbook rows 94-103, alt scale row
+122); same bar stock and K as chromatic block; 10-bar set.</td>
+</tr>
+<tr class="odd">
+<td>GLK-PENT-E6</td>
+<td>E6</td>
+<td>88</td>
+<td>1318.510</td>
+<td>6.226</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.396</td>
+<td>4.830</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C major pentatonic art-fair</td>
+<td>Art-fair C major pentatonic (workbook rows 94-103, alt scale row
+122); same bar stock and K as chromatic block; 10-bar set.</td>
+</tr>
+<tr class="even">
+<td>GLK-PENT-G6</td>
+<td>G6</td>
+<td>91</td>
+<td>1567.982</td>
+<td>5.709</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.280</td>
+<td>4.429</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C major pentatonic art-fair</td>
+<td>Art-fair C major pentatonic (workbook rows 94-103, alt scale row
+122); same bar stock and K as chromatic block; 10-bar set.</td>
+</tr>
+<tr class="odd">
+<td>GLK-PENT-A6</td>
+<td>A6</td>
+<td>93</td>
+<td>1760.000</td>
+<td>5.389</td>
+<td>1.000</td>
+<td>0.250</td>
+<td>1.208</td>
+<td>4.181</td>
+<td>6061-T6 Aluminum</td>
+<td>204431</td>
+<td>C major pentatonic art-fair</td>
+<td>Art-fair C major pentatonic (workbook rows 94-103, alt scale row
+122); same bar stock and K as chromatic block; 10-bar set.</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+{
+  "packet_dir": "/mnt/c/Users/Tony/Documents/GitHub/glockenspiel",
+  "title": "Glockenspiel - Tuned Metal-Bar Idiophone Build Packet",
+  "generated": "2026-05-08",
+  "skill": "instrument-maker-v4",
+  "skill_version": "v4.3",
+  "layout": "Mode A root-mode",
+  "files_included": [
+    "design.md",
+    "family-spec.csv",
+    "bom.csv",
+    "sourcing.csv",
+    "cut-list.csv",
+    "validation.csv",
+    "assembly-manual.md",
+    "supplier-rfq.md",
+    "drawing-brief.md",
+    "visual-bom-brief.md",
+    "wolfram-starter.wl",
+    "risks.md",
+    "photo-shotlist.md",
+    "resources.md",
+    "jig-decision.md",
+    "README.md"
+  ],
+  "outputs": {
+    "capstone_deck_markdown": "/mnt/c/Users/Tony/Documents/GitHub/glockenspiel/capstone-deck.md",
+    "capstone_deck_pptx": "/mnt/c/Users/Tony/Documents/GitHub/glockenspiel/capstone-deck.pptx",
+    "print_packet_markdown": "/mnt/c/Users/Tony/Documents/GitHub/glockenspiel/print-packet.md",
+    "print_packet_html": "/mnt/c/Users/Tony/Documents/GitHub/glockenspiel/print-packet.html",
+    "print_packet_pdf": "/mnt/c/Users/Tony/Documents/GitHub/glockenspiel/print-packet.pdf"
+  },
+  "asset_folders": {
+    "drawings": [
+      "drawings/GLK-C5-body.svg",
+      "drawings/GLK-A5-body.svg",
+      "drawings/GLK-C7-body.svg",
+      "drawings/family-overview.svg",
+      "drawings/frame-layout.svg",
+      "drawings/mounting-detail.svg",
+      "drawings/visual-bom-plate.svg"
+    ],
+    "cad": [
+      "cad/glockenspiel-master.scad",
+      "cad/design-table-inputs.csv",
+      "cad/sw-global-variables.csv",
+      "cad/SolidWorks-MasterLayout-Plan.md"
+    ],
+    "cnc": [
+      "cnc/cnc-plan.json",
+      "cnc/operations.csv",
+      "cnc/setup-sheet.md"
+    ],
+    "jigs": [
+      "jigs/README.md"
+    ],
+    "wolfram": [
+      "wolfram/instrument-model.wl"
+    ],
+    "site": [
+      "site/index.html",
+      "site/assets/style.css"
+    ]
+  },
+  "build_targets": {
+    "primary": "C5-C7 chromatic (25 bars)",
+    "art_fair_variant": "C-major pentatonic (10 bars: C5,D5,E5,G5,A5,C6,D6,E6,G6,A6)",
+    "primary_material": "6061-T6 Aluminum, K=204431",
+    "frame_material": "Black Walnut (CNC-routed)",
+    "alternate_metals_documented": ["Brass C260 K=145325", "Steel 1018 K=204267", "304 Stainless K=198770", "Phosphor Bronze K=142593"]
+  },
+  "honest_uncertainties": [
+    "Workbook K=204431 is a literature-derived first-pass; per-mill-lot K may differ by 5-10%. Pilot calibration from C5/A5/C7 measurements is the recalibration step.",
+    "Grommet durometer (Shore 30A/50A/70A) is TBD until durometer pilot rig is run.",
+    "Frame ergonomics (player reach, accidental row offset) is TBD until full-size taped layout is validated.",
+    "All supplier prices in sourcing.csv are explicitly marked 'not verified'.",
+    "No measured tuning data exists yet; all frequencies in family-spec.csv are target predictions.",
+    "Native SolidWorks files are not committed; cad/ folder defines the global-variable and design-table contract.",
+    "No process photos are committed yet; photo-shotlist.md documents the build-log image plan."
+  ],
+  "validator_disposition": {
+    "expected_finding_1": "README.md is suspiciously short and matches the minimal scaffold pattern.",
+    "expected_finding_2": "README.md hero image / scaffold pattern matches.",
+    "user_direction": "User directed that README.md be left untouched per their 'preserve existing user changes' guidance. Both findings are acknowledged and accepted."
+  },
+  "notes": [
+    "PPTX generated via pandoc 3.1.3 (capstone-deck.md -> capstone-deck.pptx).",
+    "PDF generated via weasyprint 68.1 from print-packet.html with custom @page styling (60 pages).",
+    "python-pptx and weasyprint were installed via pip with --break-system-packages on the WSL Python 3.12 runtime to support real binary deliverables. To replicate elsewhere: `pip install --user --break-system-packages python-pptx weasyprint`.",
+    "Pandoc emitted cosmetic TeX-math warnings during HTML render where '$' appears in CSV cost columns; the warnings do not affect the output.",
+    "wolfram/instrument-model.wl is the v4.2-style packet; wolfram-starter.wl is the 3-line bridge that loads it. Run via `wolframscript -file wolfram-starter.wl` once a local Wolfram is available."
+  ]
+}

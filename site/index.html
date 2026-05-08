@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Glockenspiel — Tony Koop's Build Log</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-img" style="background:linear-gradient(135deg,#c0c4cc 0%,#5c3517 100%);height:340px;"></div>
+  <div class="hero-text">
+    <h1>Glockenspiel — C5–C7 Chromatic + Pentatonic Art-Fair Variant</h1>
+    <p>A 25-bar tuned metal-bar idiophone in 6061-T6 aluminum on a CNC-routed Black Walnut frame, with an optional 10-bar C-major-pentatonic variant for art-fair products. Free-free beam acoustics, no arch undercut, no resonator tubes.</p>
+  </div>
+</header>
+
+<main>
+
+<section><h2>What this is</h2>
+<p>This repository is the <code>instrument-maker-v4</code> v4.3 root-mode build packet for a glockenspiel. It turns the existing <code>glockenspiel-design-table.xlsx</code> scaffold into a shop-facing documentation set.</p>
+<ol>
+<li><code>design.md</code> explains the physics model (free-free metal beam), the K-calibration discipline, and the validation plan.</li>
+<li><code>family-spec.csv</code> is the 25-bar C5–C7 chromatic schedule plus a 10-bar pentatonic block, extracted from workbook formulas.</li>
+<li><code>bom.csv</code>, <code>sourcing.csv</code>, and <code>cut-list.csv</code> separate stable specifications from supplier facts that should be verified before buying.</li>
+<li><code>drawings/</code>, <code>cad/</code>, <code>cnc/</code>, <code>jigs/</code>, <code>wolfram/</code>, and <code>site/</code> carry the technical handoff layers.</li>
+<li><code>jig-decision.md</code> turns the fixture assumptions into pilot-build gates before the full 25-bar run.</li>
+</ol>
+<p>Part of the <a href="https://github.com/tonykoop/instrument-maker">tonykoop/instrument-maker</a> catalog.</p>
+</section>
+
+<section><h2>Physics in one minute</h2>
+<p>A glockenspiel bar is a free-free beam. The first mode uses <code>lambda_1 = 4.730</code>, and the practical workbook model is:</p>
+<pre>f ~= K * t / L^2
+L ~= sqrt(K * t / f)</pre>
+<p>For 6061-T6 aluminum, <code>K = 204431</code>, <code>t = 0.250 in</code>, <code>w = 1.000 in</code>. Length is the dominant pitch lever; width does not affect frequency. The cord/support points land at <code>0.2242·L</code> and <code>0.7758·L</code>.</p>
+<p>NAF K2 corrections, vessel Helmholtz corrections, and cantilever wood K-tables do <em>not</em> apply to free-free metal beams. The honest correction loop is per-lot K calibration from pilot measurements.</p>
+</section>
+
+<section><h2>Bar schedule (representative)</h2>
+<table>
+<thead><tr><th>Note</th><th>Frequency</th><th>Bar length</th><th>Width</th><th>Node 1</th><th>Node 2</th></tr></thead>
+<tbody>
+<tr><td>C5</td><td>523.251 Hz</td><td>9.883 in</td><td>1.000 in</td><td>2.216 in</td><td>7.667 in</td></tr>
+<tr><td>A5</td><td>880.000 Hz</td><td>7.621 in</td><td>1.000 in</td><td>1.709 in</td><td>5.912 in</td></tr>
+<tr><td>C6</td><td>1046.502 Hz</td><td>6.988 in</td><td>1.000 in</td><td>1.567 in</td><td>5.422 in</td></tr>
+<tr><td>A6</td><td>1760.000 Hz</td><td>5.389 in</td><td>1.000 in</td><td>1.208 in</td><td>4.181 in</td></tr>
+<tr><td>C7</td><td>2093.005 Hz</td><td>4.941 in</td><td>1.000 in</td><td>1.108 in</td><td>3.834 in</td></tr>
+</tbody>
+</table>
+<p>Full 25-bar chromatic schedule plus 10-bar pentatonic block in <code>family-spec.csv</code>. All values first-pass; pilot K calibration recomputes them.</p>
+</section>
+
+<section><h2>Material decision matrix</h2>
+<table>
+<thead><tr><th>Material</th><th>K</th><th>Tone Character</th><th>Cost</th></tr></thead>
+<tbody>
+<tr><td>6061-T6 Aluminum (default)</td><td>204431</td><td>Bright, bell-like, long sustain</td><td>$</td></tr>
+<tr><td>Brass C260</td><td>145325</td><td>Warm, mellow, classic glock tone</td><td>$$$</td></tr>
+<tr><td>Steel 1018</td><td>204267</td><td>Harsh, metallic, very loud</td><td>$</td></tr>
+<tr><td>304 Stainless</td><td>198770</td><td>Clean, modern, corrosion-resistant</td><td>$$</td></tr>
+<tr><td>Phosphor Bronze</td><td>142593</td><td>Rich, warm, excellent sustain</td><td>$$$$</td></tr>
+</tbody>
+</table>
+<p>To switch metals: replace K in <code>family-spec.csv</code> and recompute <code>predicted_length_in = sqrt(K·t/f)</code>.</p>
+</section>
+
+<section><h2>Drawings</h2>
+<p><img src="../drawings/GLK-C5-body.svg" alt="GLK-C5 dimensioned drawing" style="max-width:100%;"></p>
+<p><img src="../drawings/GLK-A5-body.svg" alt="GLK-A5 dimensioned drawing" style="max-width:100%;"></p>
+<p><img src="../drawings/GLK-C7-body.svg" alt="GLK-C7 dimensioned drawing" style="max-width:100%;"></p>
+<p><img src="../drawings/family-overview.svg" alt="Family overview" style="max-width:100%;"></p>
+<p><img src="../drawings/frame-layout.svg" alt="Frame layout" style="max-width:100%;"></p>
+<p><img src="../drawings/mounting-detail.svg" alt="Mounting detail" style="max-width:100%;"></p>
+<p><img src="../drawings/visual-bom-plate.svg" alt="Visual BOM plate" style="max-width:100%;"></p>
+</section>
+
+<section><h2>Jig decision layer</h2>
+<p><code>jig-decision.md</code> is the pilot-build stop/go record. It chooses a staged fixture set for C5, A5, and C7 before the full 25-bar aluminum run: a marking sled, V-block drill jig, foam strike-test cradle, three-block mounting prototype rig, and full-size frame layout template.</p>
+<p>Full production stays blocked until the pilot rows in <code>validation.csv</code> have measured values for <code>flat_bar</code>, <code>post_trim</code>, <code>mounted</code>, and <code>framed</code>.</p>
+</section>
+
+<section><h2>Build photos</h2>
+<p>No process photos committed yet. The shotlist (<code>photo-shotlist.md</code>) documents the planned image set for intake, bar fabrication, mounting, frame, and validation. Photos will replace the gradient hero block at the top of this page once the first pilot bars are cut.</p>
+</section>
+
+<section><h2>Status</h2>
+<table>
+<thead><tr><th>Area</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Workbook scaffold</td><td>done — source table in <code>glockenspiel-design-table.xlsx</code></td></tr>
+<tr><td>C5–C7 bar schedule</td><td>done — see <code>family-spec.csv</code></td></tr>
+<tr><td>Pentatonic art-fair variant</td><td>done — second block in <code>family-spec.csv</code></td></tr>
+<tr><td>CNC operation plan</td><td>generated — <code>cnc/cnc-plan.json</code> and <code>cnc/setup-sheet.md</code> (frame routing only; bar work is bench-top)</td></tr>
+<tr><td>SolidWorks handoff</td><td>prepared as CSV/Markdown contract; no native CAD yet</td></tr>
+<tr><td>Wolfram source</td><td>prepared as <code>wolfram/instrument-model.wl</code>; notebook execution pending local Wolfram</td></tr>
+<tr><td>Jig decision layer</td><td>done — see <code>jig-decision.md</code></td></tr>
+<tr><td>Build photos</td><td>pending first shop build</td></tr>
+<tr><td>Measured tuning data</td><td>pending pilot run (C5/A5/C7)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section><h2>Repository</h2>
+<p>Source and full packet on GitHub: <a href="https://github.com/tonykoop/glockenspiel">tonykoop/glockenspiel</a>. License: <a href="../LICENSE">CC BY 4.0</a>.</p>
+</section>
+
+</main>
+
+<footer><p>Generated by <code>instrument-maker-v4</code> v4.3 on 2026-05-08.</p></footer>
+</body>
+</html>
