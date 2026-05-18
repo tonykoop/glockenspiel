@@ -1,6 +1,6 @@
 # Glockenspiel
 
-Root-mode v4.3 public-review build packet for a 25-bar chromatic
+V5 build-packet candidate over the root-mode v4.3 public-review packet for a 25-bar chromatic
 glockenspiel / metallophone, C5 to C7, with a smaller C-major pentatonic
 art-fair variant. The design uses 6061-T6 aluminum flat bars on a CNC-routed
 walnut frame with cord-and-grommet free-free suspension.
@@ -13,7 +13,8 @@ catalogue. Sister repos: [xylophone](https://github.com/tonykoop/xylophone),
 
 ## Status
 
-This repo is an L2 design and sourcing handoff, not a build-ready L3 packet.
+This repo is a V5 build-packet candidate and L2 design/sourcing handoff, not a
+build-ready L3 packet.
 The bar schedule, frame plan, CAD/CNC handoffs, sourcing tables, validation
 workflow, capstone deck, print packet, and static site are present for human
 review. No bar has been cut, struck, mounted, or measured yet; all pitch values
@@ -50,6 +51,8 @@ actual stock lot, then update the family table before cutting the full set.
 | `family-spec.csv` | 25-bar chromatic schedule plus 10-bar pentatonic variant. |
 | `bom.csv`, `sourcing.csv`, `cut-list.csv` | Build bill of materials, supplier-ready specs, and cut operations. |
 | `validation.csv` | Pilot and full-family measurement workflow for flat, drilled, mounted, and framed phases. |
+| `validation-loop.csv`, `authority-ledger.csv` | Claim-to-evidence gates for bar dimensions, node support, metallurgy, tuning, and frame release. |
+| `visual-output-register.csv` | Validator-facing record that keeps SVG/PDF/site outputs downstream of design-table/CAD authority. |
 | `assembly-manual.md` | Step-by-step fabrication and assembly notes. |
 | `supplier-rfq.md` | RFQ draft for bar stock, frame stock, grommets, cord, rods, and mallets. |
 | `drawing-brief.md`, `visual-bom-brief.md` | Drawing and visual BOM requirements. |
@@ -62,12 +65,18 @@ actual stock lot, then update the family table before cutting the full set.
 | `capstone-deck.md` / `.pptx` | Recruiter-facing slide deck. |
 | `print-packet.md` / `.html` / `.pdf` | Shop-printable packet. |
 | `site/` | Static build-log site draft. |
+| `explorer.html` | Root V5 packet explorer for review status and authority boundaries. |
 
-## L2 Review Evidence
+## V5 Candidate Review Evidence
 
-- `git diff --check` is expected to pass for the Round 3 packet branch.
-- `python3 /home/tony/.codex/skills/instrument-maker-v4/scripts/validate_packet.py . --mode root`
-  is the root-mode gate before merge review.
+- `jq . capstone-manifest.json` checks the repo-relative manifest.
+- `test -f explorer.html` checks the Round 31 explorer deliverable.
+- `python3 /home/tony/.codex/skills/instrument-maker/scripts/validate_visual_authority.py visual-output-register.csv`
+  checks visual/CAD/design-table authority boundaries.
+- `python3 /home/tony/.codex/skills/instrument-maker/scripts/validate_acoustic_law.py family-spec.csv`
+  is expected to skip acoustic-law enforcement because this is an idiophone,
+  not a wind or free-reed family.
+- `git diff --check` should pass before PR.
 - Existing generated binaries (`capstone-deck.pptx` and `print-packet.pdf`)
   are included as review artifacts, but they are not evidence of measured
   tuning or build readiness.
@@ -79,6 +88,8 @@ Deferred gates:
 - final framed tuning within the cents band in `validation.csv`
 - SolidWorks-native release drawing review
 - live supplier price, stock, and lead-time verification
+- generated SVG/PDF/site/explorer artifacts staying downstream of design-table,
+  CAD, or measured authority
 
 ## License
 
