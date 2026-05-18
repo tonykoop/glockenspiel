@@ -1,0 +1,9 @@
+X:3
+T:Frère Jacques (Brother John)
+C:Traditional French round, 17th century, PD
+M:4/4
+L:1/4
+Q:1/4=108
+K:C
+|: c' d' e' c' | c' d' e' c' | e' f' g'2 | e' f' g'2 :|
+|: g'/ a'/ g'/ f'/ e' c' | g'/ a'/ g'/ f'/ e' c' | c' G' c'2 | c' G' c'2 :|

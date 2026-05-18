@@ -1,0 +1,11 @@
+X:2
+T:Ode to Joy (Theme from Symphony No. 9)
+C:Ludwig van Beethoven (1770-1827), PD
+M:4/4
+L:1/8
+Q:1/4=96
+K:D
+|: e'2 e'2 f'2 g'2 | g'2 f'2 e'2 d'2 | c'2 c'2 d'2 e'2 | e'3 d' d'4 :|
+|: e'2 e'2 f'2 g'2 | g'2 f'2 e'2 d'2 | c'2 c'2 d'2 e'2 | d'3 c' c'4 :|
+|: d'2 d'2 e'2 c'2 | d'2 e'2 f'2 e'2 | c'2 d'2 e'2 f'2 | e'2 d'2 c'2 g'2 :|
+|: e'2 e'2 f'2 g'2 | g'2 f'2 e'2 d'2 | c'2 c'2 d'2 e'2 | d'3 c' c'4 :|
