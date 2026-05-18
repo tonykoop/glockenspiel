@@ -71,9 +71,9 @@ actual stock lot, then update the family table before cutting the full set.
 
 - `jq . capstone-manifest.json` checks the repo-relative manifest.
 - `test -f explorer.html` checks the Round 31 explorer deliverable.
-- `python3 /home/tony/.codex/skills/instrument-maker/scripts/validate_visual_authority.py visual-output-register.csv`
+- `python3 ${CODEX_HOME:-$HOME/.codex}/skills/instrument-maker/scripts/validate_visual_authority.py visual-output-register.csv`
   checks visual/CAD/design-table authority boundaries.
-- `python3 /home/tony/.codex/skills/instrument-maker/scripts/validate_acoustic_law.py family-spec.csv`
+- `python3 ${CODEX_HOME:-$HOME/.codex}/skills/instrument-maker/scripts/validate_acoustic_law.py family-spec.csv`
   is expected to skip acoustic-law enforcement because this is an idiophone,
   not a wind or free-reed family.
 - `git diff --check` should pass before PR.
