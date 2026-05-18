@@ -6,6 +6,12 @@ Build a 25-bar chromatic C5-C7 glockenspiel from the existing workbook design ta
 
 The useful boundary for this packet is "build-ready documentation, not finished CAD or measured tuning data." Native SolidWorks files do not exist yet; the `cad/` folder defines the global-variable and design-table contract Tony can use to build the real model. All published bar lengths are first-pass cut-long targets — actual K varies with heat-treat and stock lot, so every bar should be cut at predicted length plus 0.25 in trim allowance and tuned down to pitch.
 
+Round 31 adds an explicit V5 authority layer: `authority-ledger.csv`,
+`validation-loop.csv`, and `visual-output-register.csv`. Those files do not
+promote the packet to build-ready status; they make clear which claims are
+design-table-derived, which are supplier/material assumptions, and which are
+blocked on measured pilot evidence.
+
 ## Design Intake
 
 | Field | Value |

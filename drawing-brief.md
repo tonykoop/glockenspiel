@@ -43,3 +43,5 @@ The current packet requires five build-critical drawing classes:
 - `cad/SolidWorks-MasterLayout-Plan.md` (SolidWorks contract)
 - `cnc/setup-sheet.md` (operation order, datums)
 - `jig-decision.md` (fixture release gates)
+- `visual-output-register.csv` (visual authority chain)
+- `authority-ledger.csv` (bar/node/metallurgy/tuning evidence gates)

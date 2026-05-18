@@ -1,0 +1,15 @@
+artifact_id,path,artifact_kind,role,authority,derived_from,dimension_claim,notes
+DST-001,glockenspiel-design-table.xlsx,design_table,design_table,fabrication,,derived_from_authority,Workbook design table is first-pass dimensional authority and requires pilot K calibration before full cutting
+DST-002,family-spec.csv,design_table,design_table,fabrication,DST-001,derived_from_authority,CSV bar schedule derived from workbook formulas for C5-C7 chromatic and pentatonic variants
+CAD-001,cad/glockenspiel-master.scad,cad,fabrication_geometry,fabrication,DST-002,derived_from_authority,OpenSCAD starter for layout review and CAM mockups; not final native CAD
+CAD-002,cad/SolidWorks-MasterLayout-Plan.md,cad,fabrication_geometry,fabrication,DST-002,derived_from_authority,SolidWorks contract for future native CAD; no native SolidWorks files committed
+SVG-001,drawings/GLK-C5-body.svg,svg_preview,dimensioned_drawing,derived_preview,DST-002,derived_from_authority,Pilot bar review drawing derived from family-spec row GLK-C5
+SVG-002,drawings/GLK-A5-body.svg,svg_preview,dimensioned_drawing,derived_preview,DST-002,derived_from_authority,Pilot bar review drawing derived from family-spec row GLK-A5
+SVG-003,drawings/GLK-C7-body.svg,svg_preview,dimensioned_drawing,derived_preview,DST-002,derived_from_authority,Pilot bar review drawing derived from family-spec row GLK-C7
+SVG-004,drawings/family-overview.svg,svg_preview,derived_preview,derived_preview,DST-002,derived_from_authority,Family overview derived from first-pass schedule
+SVG-005,drawings/frame-layout.svg,svg_preview,dimensioned_drawing,derived_preview,CAD-001,derived_from_authority,Frame layout review drawing; ergonomics and support fit remain validation gates
+SVG-006,drawings/mounting-detail.svg,svg_preview,dimensioned_drawing,derived_preview,CAD-001,derived_from_authority,Node support and grommet detail; durometer/sustain remains measurement-required
+SVG-007,drawings/visual-bom-plate.svg,svg_preview,visual_bom,derived_preview,DST-002,derived_from_authority,Visual BOM plate derived from packet tables
+PDF-001,print-packet.pdf,drawing_pdf,dimensioned_drawing,derived_preview,DST-002,derived_from_authority,Printable packet output; not measured tuning evidence
+HTML-001,site/index.html,render_preview,build_log,derived_preview,DST-002,derived_from_authority,Static site draft derived from packet text and drawings
+HTML-002,explorer.html,render_preview,build_log,derived_preview,DST-002,derived_from_authority,Round 31 root explorer over packet evidence and blockers
