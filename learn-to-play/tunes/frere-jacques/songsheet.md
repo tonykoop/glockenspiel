@@ -1,6 +1,6 @@
 # Frère Jacques — Songsheet
 
-**Key:** C major  **Tempo:** ♩= 108  **Meter:** 4/4  **Difficulty:** ★★☆  
+**Key:** C major  **Tempo:** ♩= 108  **Meter:** 4/4  **Difficulty:** ★★☆
 **Range:** G5–A5  **Source:** Traditional French (17th c.), public domain
 
 ## Music

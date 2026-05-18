@@ -1,6 +1,6 @@
 # Twinkle Twinkle Little Star — Songsheet
 
-**Key:** C major  **Tempo:** ♩= 100  **Meter:** 4/4  **Difficulty:** ★☆☆  
+**Key:** C major  **Tempo:** ♩= 100  **Meter:** 4/4  **Difficulty:** ★☆☆
 **Range:** C5–A5  **Source:** Traditional French melody, public domain
 
 ## Music (ABC notation — paste into abcjs.net to hear it)

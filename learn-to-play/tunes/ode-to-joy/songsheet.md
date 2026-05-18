@@ -1,6 +1,6 @@
 # Ode to Joy — Songsheet
 
-**Key:** D major  **Tempo:** ♩= 96  **Meter:** 4/4  **Difficulty:** ★☆☆  
+**Key:** D major  **Tempo:** ♩= 96  **Meter:** 4/4  **Difficulty:** ★☆☆
 **Range:** C#5–G5  **Source:** Beethoven, Symphony No. 9 (1824), public domain
 
 ## Music

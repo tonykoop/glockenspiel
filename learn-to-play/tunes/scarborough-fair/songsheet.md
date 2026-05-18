@@ -1,7 +1,7 @@
 # Scarborough Fair — Songsheet
 
-**Key:** D dorian (D natural minor with raised 6th)  **Tempo:** ♩= 76  
-**Meter:** 3/4  **Difficulty:** ★★★  **Range:** C5–D6  
+**Key:** D dorian (D natural minor with raised 6th)  **Tempo:** ♩= 76
+**Meter:** 3/4  **Difficulty:** ★★★  **Range:** C5–D6
 **Source:** Traditional English ballad, public domain
 
 ## Music

@@ -1,6 +1,6 @@
 # Amazing Grace — Songsheet
 
-**Key:** G major  **Tempo:** ♩= 80  **Meter:** 3/4  **Difficulty:** ★★☆  
+**Key:** G major  **Tempo:** ♩= 80  **Meter:** 3/4  **Difficulty:** ★★☆
 **Range:** D5–D6  **Source:** John Newton, "Olney Hymns" 1779; tune trad. PD
 
 ## Music
