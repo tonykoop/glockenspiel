@@ -33,3 +33,6 @@ dist/
 
 # Wolfram
 *.cdf.tmp
+
+# Stash-recovery sidecars
+stash-recovered-*/
