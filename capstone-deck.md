@@ -126,7 +126,7 @@ _Speaker notes:_ The frame is the only CNC step. Everything else is bench-top wi
 - cad/: OpenSCAD master + SolidWorks contract (CSV + plan).
 - cnc/: cnc-plan.json, operations.csv, setup-sheet.md (frame-routing focus).
 - jigs/: Pilot fixture artifacts as built.
-- wolfram/: instrument-model.wl with kMetal/lBar/Manipulate/validation plot.
+- wolfram/: glockenspiel-wolfram-model.wl with kMetal/lBar/Manipulate/validation plot.
 - site/: Build-log static site.
 
 ---
