@@ -120,3 +120,40 @@ CreateGlockenspielNotebook[] := CreateDocument[{
     "Input"
   ]
 }];
+
+(* ===== CloudDeploy entry point: bare, self-contained Manipulate ===== *)
+(* This is the FINAL top-level expression so Get[]/CloudDeploy yields a   *)
+(* Manipulate object directly. It reuses the package functions            *)
+(* Glockenspiel`lBar and Glockenspiel`nodePositions plus the Global       *)
+(* `materials` association, and ships them via SaveDefinitions -> True.    *)
+(* All outputs are EMPIRICAL ESTIMATES from the free-free beam model.      *)
+
+Manipulate[
+  Module[
+    {K = materials[mat]["K"], L, nodes},
+    L = Glockenspiel`lBar[freq, thick, K];
+    nodes = Glockenspiel`nodePositions[L];
+    Column[{
+      Style["Glockenspiel bar — EMPIRICAL ESTIMATES (free-free beam model)", Bold],
+      Grid[
+        {
+          {"Material", mat},
+          {"Material constant K (imperial)", Round[K, 1]},
+          {"Target frequency (Hz)", freq},
+          {"Bar thickness (in)", thick},
+          {"Estimated bar length (in)", NumberForm[L, {6, 3}]},
+          {"Estimated node positions (in)", NumberForm[nodes, {6, 3}]}
+        },
+        Alignment -> Left,
+        Frame -> All,
+        Spacings -> {2, 1}
+      ],
+      Style["Estimates only — confirm by measurement and trim-to-tune.", Italic, Gray]
+    }]
+  ],
+  {{mat, "6061-T6 Aluminum", "Material"}, Keys[materials]},
+  {{freq, 880, "Target frequency (Hz)"}, 200, 3000, 1},
+  {{thick, 0.25, "Thickness (in)"}, 0.125, 0.5, 0.0625},
+  ControlPlacement -> Left,
+  SaveDefinitions -> True
+]
