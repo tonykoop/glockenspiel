@@ -106,5 +106,23 @@
     "Run `python3 ${CODEX_HOME:-$HOME/.codex}/skills/instrument-maker/scripts/validate_visual_authority.py visual-output-register.csv` after visual register changes.",
     "Run `python3 ${CODEX_HOME:-$HOME/.codex}/skills/instrument-maker/scripts/validate_acoustic_law.py family-spec.csv`; idiophone rows are expected to skip acoustic-law enforcement.",
     "Run `git diff --check` before PR."
-  ]
+  ],
+  "engineering": {
+    "wolfram": [
+      {
+        "source_file": "idiophones/glockenspiel/glockenspiel-starter.wl",
+        "cloud_path": "Musical_Instruments/idiophones/glockenspiel/glockenspiel-starter.wl",
+        "cloud_url": "https://www.wolframcloud.com/obj/wrfcoin/Musical_Instruments/idiophones/glockenspiel/glockenspiel-starter.wl",
+        "permission": "Public-Execute",
+        "kind": "acoustics-starter"
+      },
+      {
+        "source_file": "idiophones/glockenspiel/wolfram/glockenspiel-wolfram-model.wl",
+        "cloud_path": "Musical_Instruments/idiophones/glockenspiel/glockenspiel-wolfram-model.wl",
+        "cloud_url": "https://www.wolframcloud.com/obj/wrfcoin/Musical_Instruments/idiophones/glockenspiel/glockenspiel-wolfram-model.wl",
+        "permission": "Public-Execute",
+        "kind": "geometry-model"
+      }
+    ]
+  }
 }
