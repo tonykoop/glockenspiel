@@ -49,7 +49,7 @@ KeyValueMap[
 
 (* ----- Manipulate: explore length vs frequency over material + thickness ----- *)
 
-Manipulate[
+glockenspielExplorer = Manipulate[
   Module[{K = materials[mat]["K"], L},
     L = Glockenspiel`lBar[freq, thick, K];
     Column[{
