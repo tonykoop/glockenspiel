@@ -1,0 +1,34 @@
+{
+  "product": "glockenspiel",
+  "pipeline": "studiopipeline:evolution-pipeline",
+  "stage": "0-intake",
+  "master_revision": "rev-A (pre-commit intake, 2026-07-01)",
+  "generated": "2026-07-01",
+  "cad_masters": [
+    {
+      "path": "cad/glockenspiel-master.scad",
+      "format": "openscad-source",
+      "sha256": "6bb210bba8452f248684d01d71052a385e7ed5c14e3fd130ca833ccd071a694d",
+      "authority": "pending_measurement",
+      "lossy": false,
+      "notes": "Existing parametric master (kept, not rewritten, per V5 idiophones addendum); bar length/node-hole layout for review and CAM mockups, not final tuning."
+    },
+    {
+      "path": "glockenspiel-design-table.xlsx",
+      "format": "design-table",
+      "sha256": "0a42e519640701522017ba7fabde0a9fcf048d87f90b3904651a0452c12441e3",
+      "authority": "fabrication",
+      "lossy": false,
+      "notes": "Current dimensional authority (K constant, bar schedule, node positions); requires pilot K calibration before full cutting."
+    },
+    {
+      "path": "wolfram/glockenspiel-wolfram-model.wl",
+      "format": "wolfram-source",
+      "sha256": "03d5f1dd911bb0d025bc49c5f729b208ae4ef28309bb6773bb2ee64dd9dc919b",
+      "authority": "derived_preview",
+      "lossy": false,
+      "notes": "Source-only (not executed); L2 evidence."
+    }
+  ],
+  "notes": "OpenSCAD starter + design table are the current masters; no native SolidWorks or STEP export yet (cad/SolidWorks-MasterLayout-Plan.md is a contract, not native CAD). Gate A (Alpha workspace compile) not yet run."
+}

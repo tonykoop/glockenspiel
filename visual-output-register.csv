@@ -13,3 +13,5 @@ SVG-007,drawings/visual-bom-plate.svg,svg_preview,visual_bom,derived_preview,DST
 PDF-001,print-packet.pdf,drawing_pdf,dimensioned_drawing,derived_preview,DST-002,derived_from_authority,Printable packet output; not measured tuning evidence
 HTML-001,site/index.html,render_preview,build_log,derived_preview,DST-002,derived_from_authority,Static site draft derived from packet text and drawings
 HTML-002,explorer.html,render_preview,build_log,derived_preview,DST-002,derived_from_authority,Round 31 root explorer over packet evidence and blockers
+WL-001,glockenspiel-starter.wl,wolfram_source,wolfram,derived_preview,,source_only,Wolfram starter loader; not executed - source-only evidence at L2.
+WL-002,wolfram/glockenspiel-wolfram-model.wl,wolfram_source,wolfram,derived_preview,,source_only,Parametric bar length/node/validation model; not executed - source-only evidence at L2.
