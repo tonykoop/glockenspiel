@@ -1,5 +1,8 @@
 # Glockenspiel
 
+**Status:** L2 V5 build-packet candidate; not a build-ready L3 packet (no bar
+has been cut, struck, mounted, or measured yet).
+
 V5 build-packet candidate over the root-mode v4.3 public-review packet for a 25-bar chromatic
 glockenspiel / metallophone, C5 to C7, with a smaller C-major pentatonic
 art-fair variant. The design uses 6061-T6 aluminum flat bars on a CNC-routed
@@ -59,6 +62,8 @@ actual stock lot, then update the family table before cutting the full set.
 | `wolfram-starter.wl` | Parametric notebook starter for bar length, node, and validation plots. |
 | `risks.md` | Red-team review of tuning, mounting, sourcing, safety, and release risks. |
 | `jig-decision.md`, `resources.md` | v4.3 manufacturing-decision adjuncts and public-safe references. |
+| `cad/mcp-session-log.md` | V5 provenance log for fabrication-authority artifacts (design table, family-spec, CAD masters). |
+| `evolution/` | Evolution-pipeline Stage 0 intake: master manifest, design-intent, and revision register (Gate A not yet run). |
 | `cad/` | OpenSCAD starter, SolidWorks master-layout plan, and design-table inputs. |
 | `cnc/` | CNC operation graph and setup sheet for the walnut frame and fixtures. |
 | `drawings/` | First-cut SVG sheets for bars, frame, mounting, family overview, and visual BOM. |
