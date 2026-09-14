@@ -1,0 +1,18 @@
+* text=auto eol=lf
+
+*.stl binary
+*.step binary
+*.stp binary
+*.sldprt binary
+*.sldasm binary
+*.slddrw binary
+*.f3d binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.pptx binary
+*.xlsx binary
+*.mp4 binary
+*.glb binary
+*.3mf binary
